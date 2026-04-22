@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+package.json
+package-lock.json
+serve.mjs
+screenshot.mjs
+CLAUDE.md
+SKILL*.md
+temporary screenshots/
+sprites/
+brand assets/golden-k-brand-guide-v2.html
