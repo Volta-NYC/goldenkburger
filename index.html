@@ -133,10 +133,27 @@ nav {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
+  position: relative;
+  padding-bottom: 6px;
   transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-links a:hover { color: var(--yellow); }
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--yellow);
+  transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
 
 .nav-cta {
   background: var(--yellow);
@@ -179,7 +196,7 @@ nav {
   background-image:
     linear-gradient(rgba(16,27,102,0.72), rgba(16,27,102,0.72)),
     url('https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg');
-  background-position: center;
+  background-position: center calc(50% + var(--hero-bg-shift, 0px));
   background-size: cover;
 }
 
@@ -188,7 +205,7 @@ nav {
   background-image:
     linear-gradient(rgba(245,216,0,0.64), rgba(245,216,0,0.64)),
     url('https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg');
-  background-position: center;
+  background-position: center calc(50% + var(--hero-bg-shift, 0px));
   background-size: cover;
 }
 
@@ -210,7 +227,7 @@ nav {
 .hero-eyebrow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
   margin-bottom: 28px;
 }
 
@@ -401,6 +418,36 @@ nav {
   box-shadow: 0 4px 24px rgba(10,17,64,0.25);
 }
 
+/* ── HERO ENTRANCE + SCROLL MOTION ── */
+.js-ready .hero-left > *,
+.js-ready .hero-logo-display {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.js-ready .hero.hero-animate .hero-left > *,
+.js-ready .hero.hero-animate .hero-logo-display {
+  animation: hero-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.js-ready .hero.hero-animate .hero-left > :nth-child(1) { animation-delay: 0.04s; }
+.js-ready .hero.hero-animate .hero-left > :nth-child(2) { animation-delay: 0.12s; }
+.js-ready .hero.hero-animate .hero-left > :nth-child(3) { animation-delay: 0.2s; }
+.js-ready .hero.hero-animate .hero-left > :nth-child(4) { animation-delay: 0.28s; }
+.js-ready .hero.hero-animate .hero-left > :nth-child(5) { animation-delay: 0.36s; }
+.js-ready .hero.hero-animate .hero-logo-display { animation-delay: 0.22s; }
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── STATS BAR ── */
 .stats-bar {
   background: var(--navy-deeper);
@@ -573,26 +620,11 @@ nav {
 
 .menu-item-row {
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 14px;
   align-items: start;
   padding: 16px 0;
   border-top: 1px solid rgba(10,17,64,0.1);
-}
-
-.menu-item-image {
-  width: 78px;
-  height: 78px;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid rgba(10,17,64,0.12);
-}
-
-.menu-item-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .menu-item-info {
@@ -1391,12 +1423,8 @@ footer {
   .menu-tab-btn { font-size: 11px; padding: 14px 10px 13px; }
   .menu-active-title { font-size: clamp(32px, 10vw, 50px); }
   .menu-items-grid { grid-template-columns: 1fr; }
-  .menu-item-row {
-    grid-template-columns: 70px minmax(0, 1fr);
-    gap: 12px;
-  }
+  .menu-item-row { gap: 12px; }
   .menu-item-price {
-    grid-column: 2 / 3;
     font-size: 28px;
   }
   .about-section { padding: 64px 24px; }
@@ -1555,10 +1583,6 @@ footer {
 
   <div class="hero-left">
     <div class="hero-eyebrow">
-      <span class="hero-heritage-flags" aria-label="South Korean and American flags">
-        <span class="hero-flag-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg" alt="South Korean flag"></span>
-        <span class="hero-flag-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="United States flag"></span>
-      </span>
       <span class="hero-eyebrow-text">Bayside, Queens · Family-Owned Since Day One</span>
     </div>
     <h1 class="hero-h1">
@@ -1916,6 +1940,26 @@ footer {
 <script>
 // Enable animations only after JS loads (prevents invisible content on screenshots)
 document.documentElement.classList.add('js-ready');
+
+// ── HERO ENTRANCE + SCROLL ANIMATION ──
+(function () {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  requestAnimationFrame(() => {
+    setTimeout(() => hero.classList.add('hero-animate'), 60);
+  });
+
+  const updateHeroShift = () => {
+    const rect = hero.getBoundingClientRect();
+    const vh = Math.max(window.innerHeight, 1);
+    const progress = Math.min(Math.max(-rect.top / vh, 0), 1);
+    hero.style.setProperty('--hero-bg-shift', `${progress * 22}px`);
+  };
+
+  updateHeroShift();
+  window.addEventListener('scroll', updateHeroShift, { passive: true });
+})();
 
 // ── BEAMS BACKGROUND HERO ──
 (function () {
@@ -2305,9 +2349,6 @@ function renderMenuCategory(index) {
     const desc = item.description ? `<div class="menu-item-description">${escapeHtml(item.description)}</div>` : '';
     return `
       <article class="menu-item-row">
-        <div class="menu-item-image">
-          <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" loading="lazy">
-        </div>
         <div class="menu-item-info">
           <div class="menu-item-name">${escapeHtml(item.name)}</div>
           ${desc}
