@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Golden K Burgers — Bayside, Queens</title>
+<link rel="icon" type="image/avif" href="brand%20assets/kburger.avif">
+<link rel="shortcut icon" href="brand%20assets/kburger.avif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
@@ -189,6 +191,8 @@ nav {
   bottom: 0;
   width: 50%;
   pointer-events: none;
+  transform-origin: center;
+  transition: background-position 0.16s linear;
 }
 
 .hero::before {
@@ -422,31 +426,124 @@ nav {
 .js-ready .hero-left > *,
 .js-ready .hero-logo-display {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(26px) scale(0.98);
+  filter: blur(6px);
 }
 
-.js-ready .hero.hero-animate .hero-left > *,
+.js-ready .hero::before,
+.js-ready .hero::after {
+  opacity: 0;
+  transform: scale(1.14);
+}
+
+.js-ready .hero.hero-animate::before,
+.js-ready .hero.hero-animate::after {
+  animation: hero-flags-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.js-ready .hero.hero-animate .hero-eyebrow {
+  animation: hero-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.js-ready .hero.hero-animate .hero-h1 {
+  animation: hero-title-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.js-ready .hero.hero-animate .hero-accent-line,
+.js-ready .hero.hero-animate .hero-rule,
+.js-ready .hero.hero-animate .hero-desc,
+.js-ready .hero.hero-animate .hero-cta-row {
+  animation: hero-fade-up 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 .js-ready .hero.hero-animate .hero-logo-display {
-  animation: hero-fade-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-logo-in 0.98s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.js-ready .hero.hero-animate .hero-left > :nth-child(1) { animation-delay: 0.04s; }
-.js-ready .hero.hero-animate .hero-left > :nth-child(2) { animation-delay: 0.12s; }
-.js-ready .hero.hero-animate .hero-left > :nth-child(3) { animation-delay: 0.2s; }
-.js-ready .hero.hero-animate .hero-left > :nth-child(4) { animation-delay: 0.28s; }
-.js-ready .hero.hero-animate .hero-left > :nth-child(5) { animation-delay: 0.36s; }
-.js-ready .hero.hero-animate .hero-logo-display { animation-delay: 0.22s; }
+.js-ready .hero.hero-animate .hero-eyebrow { animation-delay: 0.06s; }
+.js-ready .hero.hero-animate .hero-h1 { animation-delay: 0.14s; }
+.js-ready .hero.hero-animate .hero-accent-line { animation-delay: 0.26s; }
+.js-ready .hero.hero-animate .hero-rule { animation-delay: 0.34s; }
+.js-ready .hero.hero-animate .hero-desc { animation-delay: 0.42s; }
+.js-ready .hero.hero-animate .hero-cta-row { animation-delay: 0.5s; }
+.js-ready .hero.hero-animate .hero-logo-display { animation-delay: 0.28s; }
 
 @keyframes hero-fade-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px) scale(0.98);
+    filter: blur(6px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
+
+@keyframes hero-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(34px) scale(0.88);
+    filter: blur(8px);
+  }
+  64% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.03);
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-logo-in {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.84) rotate(-3deg);
+    filter: blur(8px);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.03) rotate(0.5deg);
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-flags-in {
+  from {
+    opacity: 0;
+    transform: scale(1.14);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── SECTION SCROLL REVEAL ── */
+.js-ready .scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(3px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-ready .scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.scroll-reveal-delay-1 { transition-delay: 0.1s; }
+.scroll-reveal-delay-2 { transition-delay: 0.2s; }
 
 /* ── STATS BAR ── */
 .stats-bar {
@@ -1561,7 +1658,7 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
+  <a href="#home" class="nav-logo">
     <img src="brand assets/kburger.avif" alt="Golden K Burgers Logo">
     <span class="nav-wordmark">GOLDEN <span class="k">K</span> BURGERS</span>
   </a>
@@ -1613,7 +1710,7 @@ footer {
 </section>
 
 <!-- STATS BAR -->
-<div class="stats-bar">
+<div class="stats-bar scroll-reveal">
   <div class="stat">
     <span class="stat-num">20+</span>
     <span class="stat-label">Burger Varieties</span>
@@ -1634,7 +1731,7 @@ footer {
 
 <!-- MENU SECTION -->
 <section class="menu-section" id="menu">
-  <div class="menu-section-header">
+  <div class="menu-section-header scroll-reveal">
     <div class="menu-header-left">
       <div class="section-eyebrow">2 — Menu</div>
       <h2 class="section-title">Everything On<br><span class="accent">The Current Menu</span></h2>
@@ -1643,7 +1740,7 @@ footer {
     <a href="https://www.goldenkburgersnyc.com/order" target="_blank" class="menu-link">Order Direct <span class="arrow">→</span></a>
   </div>
 
-  <div class="menu-shell">
+  <div class="menu-shell scroll-reveal scroll-reveal-delay-1">
     <div class="menu-tab-bar">
       <div class="menu-tab-list" id="menuTabList"></div>
     </div>
@@ -1653,7 +1750,7 @@ footer {
 
 <!-- GALLERY SECTION -->
 <section class="gallery-section" id="gallery">
-  <div class="gallery-header">
+  <div class="gallery-header scroll-reveal">
     <div class="gallery-header-left">
       <div class="section-eyebrow">3 — Gallery</div>
       <h2 class="section-title">Food Worth<br>Looking At</h2>
@@ -1663,7 +1760,7 @@ footer {
   </div>
 
   <!-- BENTO GRID -->
-  <div class="bento-grid" id="bentoGrid">
+  <div class="bento-grid scroll-reveal scroll-reveal-delay-1" id="bentoGrid">
 
     <div class="bento-item b-c1r3 fade-up" data-id="0">
       <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Classic Smash Burger" loading="lazy">
@@ -1748,7 +1845,7 @@ footer {
   <div class="about-bg-radial"></div>
   <div class="about-bg-radial-2"></div>
 
-  <div class="about-grid">
+  <div class="about-grid scroll-reveal">
     <div>
       <div class="section-eyebrow">4 — Our Story</div>
       <h2 class="section-title">Who We Are</h2>
@@ -1797,11 +1894,11 @@ footer {
 <!-- TESTIMONIALS SECTION -->
 <section class="testimonials-section">
   <div class="testimonials-inner">
-    <div class="testimonials-header">
+    <div class="testimonials-header scroll-reveal">
       <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">5 — Reviews</div>
       <h2 class="section-title" style="color:white;">See What Our<br>Guests Are Saying</h2>
     </div>
-    <div class="testimonials-grid">
+    <div class="testimonials-grid scroll-reveal scroll-reveal-delay-1">
       <div class="testimonial-card fade-up">
         <div class="tc-stars">★★★★★</div>
         <p class="tc-body">"Amazing! Fresh ingredients and cooked perfectly. Well priced as well. Very good service! We felt well taken care of."</p>
@@ -1827,7 +1924,7 @@ footer {
 </section>
 
 <!-- EXPERIENCE STRIP -->
-<div class="experience-strip">
+<div class="experience-strip scroll-reveal">
   <div class="exp-left">
     <div class="exp-tagline">READY TO EAT<br>LIKE ROYALTY?</div>
     <div class="exp-sub">Dine in, carryout, or delivery — we've got you covered.</div>
@@ -1839,7 +1936,7 @@ footer {
 </div>
 
 <!-- LOCATION SECTION -->
-<section class="location-section" id="location">
+<section class="location-section scroll-reveal" id="location">
   <div class="section-eyebrow">6 — Visit Us</div>
   <h2 class="section-title">Come Hungry,<br>Leave Happy</h2>
 
@@ -1950,15 +2047,33 @@ document.documentElement.classList.add('js-ready');
     setTimeout(() => hero.classList.add('hero-animate'), 60);
   });
 
-  const updateHeroShift = () => {
+  let targetShift = 0;
+  let currentShift = 0;
+  let shiftRaf = null;
+
+  const readTargetShift = () => {
     const rect = hero.getBoundingClientRect();
     const vh = Math.max(window.innerHeight, 1);
     const progress = Math.min(Math.max(-rect.top / vh, 0), 1);
-    hero.style.setProperty('--hero-bg-shift', `${progress * 22}px`);
+    targetShift = progress * 18;
+    if (shiftRaf === null) shiftRaf = requestAnimationFrame(stepShift);
   };
 
-  updateHeroShift();
-  window.addEventListener('scroll', updateHeroShift, { passive: true });
+  const stepShift = () => {
+    currentShift += (targetShift - currentShift) * 0.16;
+    hero.style.setProperty('--hero-bg-shift', `${currentShift.toFixed(2)}px`);
+    if (Math.abs(targetShift - currentShift) < 0.05) {
+      hero.style.setProperty('--hero-bg-shift', `${targetShift.toFixed(2)}px`);
+      currentShift = targetShift;
+      shiftRaf = null;
+      return;
+    }
+    shiftRaf = requestAnimationFrame(stepShift);
+  };
+
+  readTargetShift();
+  window.addEventListener('scroll', readTargetShift, { passive: true });
+  window.addEventListener('resize', readTargetShift);
 })();
 
 // ── BEAMS BACKGROUND HERO ──
@@ -2185,16 +2300,30 @@ setTimeout(() => {
   loader.addEventListener('transitionend', () => loader.remove(), { once: true });
 }, 500);
 
-// Scroll-triggered fade-up animations
+// Scroll-triggered reveal animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.05 });
+}, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
 
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+document.querySelectorAll('.fade-up, .scroll-reveal').forEach(el => observer.observe(el));
+
+// Smooth in-page anchor links (native scroll)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (event) => {
+    const targetSelector = anchor.getAttribute('href');
+    if (!targetSelector || targetSelector === '#') return;
+    const target = document.querySelector(targetSelector);
+    if (!target) return;
+    event.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
 
 // ── MENU SNAPSHOT (LIVE MENU MIRROR AS OF MAY 12, 2026) ──
 const fullMenuData = [
@@ -2482,52 +2611,6 @@ document.addEventListener('mouseup', () => {
   if (dragState) { dock.style.transition = ''; dragState = null; }
 });
 
-// ── LENIS SMOOTH SCROLL ──
-</script>
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-<script>
-(function () {
-  const lenis = new Lenis({
-    lerp:        0.09,
-    smoothWheel: true,
-    syncTouch:   false,
-  });
-
-  // Wire anchor links so Lenis handles them
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -80 }); }
-    });
-  });
-
-  // ── SCROLL-VELOCITY TILT on bento cards ──
-  const bentoItems = document.querySelectorAll('.bento-item');
-  let currentVelocity = 0;
-
-  bentoItems.forEach(el => {
-    el.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    el.style.willChange = 'transform';
-  });
-
-  lenis.on('scroll', ({ velocity }) => {
-    currentVelocity = velocity;
-  });
-
-  function applyTilt() {
-    // clamp velocity to a max tilt of 6deg
-    const tilt = Math.max(-6, Math.min(6, currentVelocity * 1.4));
-    bentoItems.forEach((el, i) => {
-      // alternate sign per column so adjacent cards lean against each other
-      const sign = i % 2 === 0 ? 1 : -1;
-      el.style.transform = `rotate(${tilt * sign * 0.5}deg) translateY(${tilt * sign * -1.5}px)`;
-    });
-    requestAnimationFrame(applyTilt);
-  }
-
-  requestAnimationFrame(function loop(time) { lenis.raf(time); requestAnimationFrame(loop); });
-  requestAnimationFrame(applyTilt);
-})();
 </script>
 </body>
 </html>
