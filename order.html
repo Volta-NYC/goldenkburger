@@ -335,12 +335,31 @@ nav {
 
 .info-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.15); }
 
+.order-footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 18px 48px 30px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.24);
+  background: var(--navy-deeper);
+}
+
+.order-footer a {
+  color: #84d61a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.order-footer a:hover { opacity: 0.82; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   nav { padding: 0 32px; }
   .order-page { padding: 120px 40px 64px; }
   .order-inner { grid-template-columns: 1fr; gap: 48px; }
   .order-info-strip { padding: 24px 40px; gap: 24px; }
+  .order-footer { padding: 18px 40px 26px; }
 }
 
 @media (max-width: 768px) {
@@ -349,6 +368,7 @@ nav {
   .order-page { padding: 100px 24px 48px; }
   .order-info-strip { padding: 20px 24px; flex-direction: column; gap: 12px; }
   .info-dot { display: none; }
+  .order-footer { padding: 16px 24px 24px; }
 }
 </style>
 </head>
@@ -440,6 +460,8 @@ nav {
   <span class="info-dot"></span>
   <div class="info-item"><strong>(718) 819-8186</strong></div>
 </div>
+
+<footer class="order-footer">© 2026 Golden K Burgers · made by <a href="https://voltanyc.org/" target="_blank">volta</a></footer>
 
 </body>
 </html>

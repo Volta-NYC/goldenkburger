@@ -211,11 +211,19 @@ nav {
   margin-bottom: 28px;
 }
 
-.hero-eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--yellow);
+.hero-heritage-flags {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-heritage-flags span {
+  font-size: 13px;
+  line-height: 1;
 }
 
 .hero-eyebrow-text {
@@ -461,6 +469,92 @@ nav {
 }
 
 .section-title .accent { color: var(--navy); }
+
+/* ── MENU SECTION ── */
+.menu-section {
+  padding: 100px 64px;
+  background: white;
+}
+
+.menu-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 52px;
+}
+
+.menu-header-left {
+  max-width: 720px;
+}
+
+.menu-sub {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.menu-category-card {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+
+.menu-category-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 17px;
+  color: var(--navy-deeper);
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+
+.menu-category-description {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.menu-item-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-item-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(10,17,64,0.12);
+}
+
+.menu-item-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.menu-item-name {
+  font-size: 13px;
+  color: var(--body-text);
+  line-height: 1.45;
+}
+
+.menu-item-price {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 12px;
+  color: var(--navy);
+  white-space: nowrap;
+}
 
 /* ── GALLERY SECTION ── */
 .gallery-section {
@@ -803,6 +897,28 @@ nav {
   font-weight: 300;
 }
 
+.about-history {
+  margin-bottom: 36px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.about-history-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 12px;
+}
+
+.about-history-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
 .about-cta {
   display: inline-flex;
   align-items: center;
@@ -1137,6 +1253,17 @@ footer {
   color: rgba(255,255,255,0.2);
 }
 
+.footer-volta-link {
+  color: #84d61a;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer-volta-link:hover {
+  opacity: 0.82;
+}
+
 .footer-tagline {
   font-family: 'Playfair Display', serif;
   font-style: italic;
@@ -1353,7 +1480,7 @@ footer {
 
   <div class="hero-left">
     <div class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span>
+      <span class="hero-heritage-flags" aria-label="South Korean and American flags"><span>🇰🇷</span><span>🇺🇸</span></span>
       <span class="hero-eyebrow-text">Bayside, Queens · Family-Owned Since Day One</span>
     </div>
     <h1 class="hero-h1">
@@ -1386,7 +1513,7 @@ footer {
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat">
-    <span class="stat-num">25+</span>
+    <span class="stat-num">20+</span>
     <span class="stat-label">Burger Varieties</span>
   </div>
   <div class="stat">
@@ -1403,11 +1530,25 @@ footer {
   </div>
 </div>
 
+<!-- MENU SECTION -->
+<section class="menu-section" id="menu">
+  <div class="menu-section-header">
+    <div class="menu-header-left">
+      <div class="section-eyebrow">02 — Menu</div>
+      <h2 class="section-title">Everything On<br><span class="accent">The Current Menu</span></h2>
+      <p class="menu-sub">Synced from the live online ordering menu on May 12, 2026. Includes all 11 categories and 59 currently listed items.</p>
+    </div>
+    <a href="https://www.goldenkburgersnyc.com/order" target="_blank" class="menu-link">Order Direct <span class="arrow">→</span></a>
+  </div>
+
+  <div class="menu-grid" id="fullMenuGrid"></div>
+</section>
+
 <!-- GALLERY SECTION -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-header">
     <div class="gallery-header-left">
-      <div class="section-eyebrow">02 — Gallery</div>
+      <div class="section-eyebrow">03 — Gallery</div>
       <h2 class="section-title">Food Worth<br>Looking At</h2>
       <p class="gallery-sub">Bold flavors. Towering stacks. Click any shot to expand — drag the dock to reposition it.</p>
     </div>
@@ -1502,10 +1643,14 @@ footer {
 
   <div class="about-grid">
     <div>
-      <div class="section-eyebrow">03 — Our Story</div>
+      <div class="section-eyebrow">04 — Our Story</div>
       <h2 class="section-title">Who We Are</h2>
       <p class="about-lead">The <span class="highlight">crowned king</span> of Queens burgers — built from two worlds, one kitchen.</p>
-      <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant! We offer a diverse selection of beef, veggie, seafood, and chicken burgers, each served with a side of crispy fries, pepperoncini, and pickles. Customers can upgrade their fries to something special with options like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more.<br><br>Our towering meals are known for their bold flavors and generous portions, ensuring a satisfying dining experience for every guest. Come and enjoy the delicious food as we strive to become a local small business favorite!</p>
+      <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant. We offer a diverse selection of beef, veggie, seafood, and chicken burgers, each served with a side of crispy fries, pepperoncini, and pickles. Customers can upgrade their fries with options like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more.<br><br>Our meals are known for bold flavors and generous portions, and our double-patty beef burgers create a towering, mouthwatering experience you will not forget. We also offer a brunch menu, weekday lunch deals, late-night menu, desserts and milkshakes, beer, happy hour, appetizers, wings, and more. Come enjoy the food as we continue working to become a local small business favorite.</p>
+      <div class="about-history">
+        <h3 class="about-history-title">Restaurant History</h3>
+        <p class="about-history-body">Golden K Burgers (GKB) celebrated its 2nd anniversary in May 2026, marking a strong start built on consistency and community support. Owned and operated by the Kim Family, Korean Americans who brought their culture, experience, and influences into the brand, GKB offers a unique take on the classic American burger spot. Known for towering burgers with 20+ options, the restaurant focuses on bold flavors and generous portions. The name Golden K comes from the family name, Kim, where Kim is associated with gold and the K represents the family's identity, tying the brand directly back to its roots.</p>
+      </div>
       <a href="#location" class="about-cta">Find Us in Bayside <span class="arrow">→</span></a>
     </div>
 
@@ -1546,7 +1691,7 @@ footer {
 <section class="testimonials-section">
   <div class="testimonials-inner">
     <div class="testimonials-header">
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">04 — Reviews</div>
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">05 — Reviews</div>
       <h2 class="section-title" style="color:white;">See What Our<br>Guests Are Saying</h2>
     </div>
     <div class="testimonials-grid">
@@ -1588,7 +1733,7 @@ footer {
 
 <!-- LOCATION SECTION -->
 <section class="location-section" id="location">
-  <div class="section-eyebrow">05 — Visit Us</div>
+  <div class="section-eyebrow">06 — Visit Us</div>
   <h2 class="section-title">Come Hungry,<br>Leave Happy</h2>
 
   <div class="location-grid">
@@ -1680,7 +1825,7 @@ footer {
   <hr class="footer-divider">
 
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Golden K Burgers. All rights reserved.</span>
+    <span class="footer-copy">© 2026 Golden K Burgers. All rights reserved. · made by <a href="https://voltanyc.org/" target="_blank" class="footer-volta-link">volta</a></span>
     <span class="footer-tagline">Queens-proud since day one.</span>
   </div>
 </footer>
@@ -1921,6 +2066,178 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.05 });
 
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── MENU SNAPSHOT (LIVE MENU MIRROR AS OF MAY 12, 2026) ──
+const fullMenuData = [
+  {
+    "name": "GOLDEN HOUR BRUNCH",
+    "description": "Available everyday from 11 am to 2 pm (excluding holidays). Brunch options are prepared as listed.",
+    "items": [
+      { "name": "Golden Horizon Sandwich", "price": 9.50 },
+      { "name": "Golden Harvest Sandwich", "price": 12.50 },
+      { "name": "Golden B.E.C. Burger", "price": 18.00 }
+    ]
+  },
+  {
+    "name": "APPETIZERS",
+    "description": null,
+    "items": [
+      { "name": "Fried Mozzarella Sticks", "price": 13.50 },
+      { "name": "Golden Pickles Chips", "price": 12.50 },
+      { "name": "Corn Fritters", "price": 12.50 },
+      { "name": "Buffalo Cauliflower Bites", "price": 14.50 },
+      { "name": "Smoky Gouda Arancini", "price": 14.75 },
+      { "name": "Thick Beer Battered Onion Rings", "price": 15.50 },
+      { "name": "Falafel Bites", "price": 12.50 },
+      { "name": "Chicken Tenders", "price": 16.00 },
+      { "name": "Cordon Bleu Bites", "price": 13.00 }
+    ]
+  },
+  {
+    "name": "CHICKEN WINGS",
+    "description": "For superior quality, our wings are steamed then fried for tenderness and crispiness. Sprinkled scallions over the wings and served with a side of carrot sticks, celery sticks, and blue cheese.",
+    "items": [
+      { "name": "6 Pieces", "price": 13.00 },
+      { "name": "9 Pieces", "price": 17.00 },
+      { "name": "12 Pieces", "price": 20.00 }
+    ]
+  },
+  {
+    "name": "SEA BURGERS",
+    "description": "Served on a fresh brioche bun with a side of fries a side salad (lettuce, tomato, onion, cucumber, carrots, and dressing of choice: ranch, chipotle aioli, balsamic vinaigrette, Caesar, or Italian), pickle spear, and pepperoncini.",
+    "items": [
+      { "name": "Lemon Cod", "price": 22.50 },
+      { "name": "Po Boy", "price": 22.50 }
+    ]
+  },
+  {
+    "name": "VEGGIE BURGERS",
+    "description": "Served on a fresh brioche bun with a side of fries or a side salad (lettuce, tomato, onion, cucumber, carrots, and dressing of choice: ranch, chipotle aioli, balsamic vinaigrette, Caesar, or Italian), pickle spear, and pepperoncini.",
+    "items": [
+      { "name": "Hummus & Falafel", "price": 22.00 },
+      { "name": "Impossible Burger", "price": 23.00 },
+      { "name": "Kale & Herb", "price": 22.50 },
+      { "name": "Gourmet Black Bean", "price": 22.50 }
+    ]
+  },
+  {
+    "name": "BEEF BURGERS",
+    "description": "Two patties served on a fresh brioche bun with a side of fries or a side salad (lettuce, tomato, onion, cucumber, carrots, and dressing of choice: ranch, chipotle aioli, balsamic vinaigrette, Caesar, or Italian), pickle spear, and pepperoncini.",
+    "items": [
+      { "name": "Classic American", "price": 20.50 },
+      { "name": "BBQ Chip", "price": 21.00 },
+      { "name": "Supreme Pizza", "price": 21.00 },
+      { "name": "Big Kahuna", "price": 22.00 },
+      { "name": "The A1", "price": 22.00 },
+      { "name": "Loaded Sriracha", "price": 22.00 },
+      { "name": "Farmhouse", "price": 22.00 },
+      { "name": "Southwest", "price": 22.00 },
+      { "name": "Bulgogi Burger", "price": 25.00 },
+      { "name": "Kimchi Bulgogi Burger", "price": 26.00 }
+    ]
+  },
+  {
+    "name": "CHICKEN BURGERS",
+    "description": "Grilled or crispy chicken breast served on a fresh brioche bun with a side of fries or a side salad (lettuce, tomato, onion, cucumber, carrots, and dressing of choice: ranch, chipotle aioli, balsamic vinaigrette, Caesar, or Italian), pickle spear, and pepperoncini.",
+    "items": [
+      { "name": "Buttermilk", "price": 21.00 },
+      { "name": "Avocado Bacon", "price": 23.50 },
+      { "name": "Roadhouse", "price": 22.00 },
+      { "name": "Chicken Fajita", "price": 22.00 },
+      { "name": "Garlic Parm", "price": 22.00 }
+    ]
+  },
+  {
+    "name": "SLIDERS",
+    "description": "3 pieces per order. These sliders come with fries, pickle spear, and pepperoncini.",
+    "items": [
+      { "name": "Classic Sliders", "price": 19.50 }
+    ]
+  },
+  {
+    "name": "EXTRAS / SIDES",
+    "description": null,
+    "items": [
+      { "name": "Extra Side of Fries", "price": 9.00 },
+      { "name": "Extra Side of Truffle Fries", "price": 10.75 },
+      { "name": "Extra Side of Jalapeno Cheese Fries", "price": 11.00 },
+      { "name": "Extra Side of Blackened Fries", "price": 10.75 },
+      { "name": "Extra Side of Garlic Parm Fries", "price": 10.75 },
+      { "name": "Extra Side of Sweet Potato Fries", "price": 10.75 }
+    ]
+  },
+  {
+    "name": "DRINKS",
+    "description": null,
+    "items": [
+      { "name": "Bottled Soda", "price": 4.00 },
+      { "name": "Canned Soda", "price": 2.75 },
+      { "name": "Calypso", "price": 4.00 },
+      { "name": "Snapple", "price": 3.50 },
+      { "name": "Bottled Water", "price": 2.75 },
+      { "name": "San Pellegrino", "price": 5.00 },
+      { "name": "Swoon (Canned Tea)", "price": 2.75 },
+      { "name": "Poppi (Canned Soda)", "price": 2.75 },
+      { "name": "Perrier", "price": 4.50 },
+      { "name": "Saratoga Water", "price": 3.75 },
+      { "name": "Just Tea", "price": 5.25 },
+      { "name": "Bloom Pop", "price": 2.75 }
+    ]
+  },
+  {
+    "name": "MILKSHAKES",
+    "description": "Made with Haagen-Dazs ice cream.",
+    "items": [
+      { "name": "Vanilla", "price": 9.00 },
+      { "name": "Chocolate", "price": 9.00 },
+      { "name": "Strawberry", "price": 9.00 },
+      { "name": "Oreo", "price": 9.00 }
+    ]
+  }
+];
+
+const fullMenuGrid = document.getElementById('fullMenuGrid');
+if (fullMenuGrid) {
+  fullMenuData.forEach((category) => {
+    const card = document.createElement('article');
+    card.className = 'menu-category-card';
+
+    const title = document.createElement('h3');
+    title.className = 'menu-category-title';
+    title.textContent = category.name;
+    card.appendChild(title);
+
+    if (category.description) {
+      const desc = document.createElement('p');
+      desc.className = 'menu-category-description';
+      desc.textContent = category.description;
+      card.appendChild(desc);
+    }
+
+    const list = document.createElement('ul');
+    list.className = 'menu-item-list';
+
+    category.items.forEach((item) => {
+      const row = document.createElement('li');
+      row.className = 'menu-item-row';
+
+      const name = document.createElement('span');
+      name.className = 'menu-item-name';
+      name.textContent = item.name;
+
+      const price = document.createElement('span');
+      price.className = 'menu-item-price';
+      price.textContent = `$${Number(item.price).toFixed(2)}`;
+
+      row.appendChild(name);
+      row.appendChild(price);
+      list.appendChild(row);
+    });
+
+    card.appendChild(list);
+    fullMenuGrid.appendChild(card);
+  });
+}
 
 // ── BENTO GALLERY ──
 const galleryData = [
