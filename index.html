@@ -1162,48 +1162,61 @@ nav {
   border-color: var(--yellow);
 }
 
-.pillars {
+.about-side {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 0;
-  height: 100%;
-  padding: 18px 30px;
+  gap: 20px;
+}
+
+.about-side .about-history {
+  margin-bottom: 0;
+  padding: 20px 24px;
+  border-top: none;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.11);
   border-radius: 12px;
 }
 
-.pillar {
-  padding: 26px 0;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 16px;
-  align-items: start;
+.pillars {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2px;
+  height: auto;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
 }
 
-.pillar:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.pillar {
+  padding: 10px 0;
+  border-top: none;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: center;
+}
 
 .pillar-num {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: 9px;
+  letter-spacing: 0.08em;
   color: var(--yellow-deep);
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .pillar-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 7px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .pillar-desc {
-  font-size: 14px;
-  color: rgba(255,255,255,0.7);
-  line-height: 1.72;
+  display: none;
 }
 
 /* ── EXPERIENCE STRIP ── */
@@ -1537,7 +1550,8 @@ footer {
   .about-section { padding: 80px 40px; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-copy { max-width: 100%; }
-  .pillars { height: auto; padding: 14px 22px; }
+  .about-side .about-history { padding: 16px 18px; }
+  .pillars { padding: 8px 14px; }
   .about-lead { font-size: 24px; }
   .about-body { font-size: 17px; line-height: 1.9; }
   .about-history-body { font-size: 15px; line-height: 1.85; }
@@ -1567,10 +1581,10 @@ footer {
     font-size: 28px;
   }
   .about-section { padding: 64px 24px; }
-  .pillars { padding: 12px 16px; border-radius: 10px; }
-  .pillar { padding: 20px 0; }
-  .pillar-name { font-size: 15px; }
-  .pillar-desc { font-size: 13px; line-height: 1.68; }
+  .about-side .about-history { padding: 14px 14px; border-radius: 10px; }
+  .pillars { padding: 8px 10px; border-radius: 10px; }
+  .pillar { padding: 8px 0; grid-template-columns: 20px 1fr; gap: 8px; }
+  .pillar-name { font-size: 11px; }
   .about-lead { font-size: 22px; }
   .about-body { font-size: 16px; line-height: 1.85; }
   .about-history-body { font-size: 14px; line-height: 1.8; }
@@ -1902,43 +1916,33 @@ footer {
       <h2 class="section-title">Who We Are</h2>
       <p class="about-lead">The <span class="highlight">crowned king</span> of Queens burgers — built from two worlds, one kitchen.</p>
       <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant in Bayside, Queens. We serve a broad lineup of beef, veggie, seafood, and chicken burgers, each plate built for real appetite and consistency from first bite to last. Every burger is served with crispy fries, pepperoncini, and pickles, and guests can upgrade fries with favorites like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more.<br><br>Our kitchen is known for bold flavor and generous portions. The double-patty beef builds are designed to feel stacked, satisfying, and unmistakably Golden K. Alongside burgers, our menu includes brunch, weekday lunch deals, late-night options, desserts and milkshakes, appetizers, wings, beer, happy hour specials, and more, so there is always something for both first-time guests and regulars.<br><br>As a family-run small business, we focus on hospitality, quality, and staying close to the neighborhood that supports us. The goal is simple: make food worth coming back for and become a lasting local favorite in Queens.</p>
-      <div class="about-history">
-        <h3 class="about-history-title">Restaurant History</h3>
-        <p class="about-history-body">Golden K Burgers (GKB) celebrated its 2nd anniversary in May 2026, marking a strong early chapter built on consistency, repeat guests, and neighborhood support. Owned and operated by the Kim Family, Korean Americans who brought their culture, experience, and influence into the concept, GKB offers a distinct take on the classic American burger spot. With 20+ towering burger options and a reputation for bold flavor and generous portions, the restaurant has quickly built a loyal local following. The name Golden K comes directly from the family name, Kim: Kim is associated with gold, and the K represents family identity, connecting the brand back to its roots.</p>
-      </div>
       <div class="about-actions">
         <a href="#location" class="about-cta">Find Us in Bayside <span class="arrow">→</span></a>
         <a href="https://www.instagram.com/goldenkburgers/" target="_blank" rel="noopener noreferrer" class="about-ig">Instagram @goldenkburgers <span class="arrow">→</span></a>
       </div>
     </div>
 
-    <div class="pillars">
-      <div class="pillar">
-        <span class="pillar-num">1</span>
-        <div>
+    <div class="about-side">
+      <div class="about-history">
+        <h3 class="about-history-title">Restaurant History</h3>
+        <p class="about-history-body">Golden K Burgers (GKB) celebrated its 2nd anniversary in May 2026, marking a strong early chapter built on consistency, repeat guests, and neighborhood support. Owned and operated by the Kim Family, Korean Americans who brought their culture, experience, and influence into the concept, GKB offers a distinct take on the classic American burger spot. With 20+ towering burger options and a reputation for bold flavor and generous portions, the restaurant has quickly built a loyal local following. The name Golden K comes directly from the family name, Kim: Kim is associated with gold, and the K represents family identity, connecting the brand back to its roots.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="pillar-num">1</span>
           <div class="pillar-name">Royal &amp; Confident</div>
-          <div class="pillar-desc">The crown is earned. We stand behind every burger we make.</div>
         </div>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">2</span>
-        <div>
+        <div class="pillar">
+          <span class="pillar-num">2</span>
           <div class="pillar-name">Korean-American Heritage</div>
-          <div class="pillar-desc">Two cuisines, one menu, zero compromises on flavor.</div>
         </div>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">3</span>
-        <div>
+        <div class="pillar">
+          <span class="pillar-num">3</span>
           <div class="pillar-name">Family-Owned &amp; Community-Rooted</div>
-          <div class="pillar-desc">Every guest is a neighbor. The vibe is always welcoming.</div>
         </div>
-      </div>
-      <div class="pillar">
-        <span class="pillar-num">4</span>
-        <div>
+        <div class="pillar">
+          <span class="pillar-num">4</span>
           <div class="pillar-name">Fresh. Always.</div>
-          <div class="pillar-desc">Real ingredients, cooked right. That's the only rule.</div>
         </div>
       </div>
     </div>
