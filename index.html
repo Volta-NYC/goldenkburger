@@ -1068,7 +1068,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
-  align-items: start;
+  align-items: stretch;
   position: relative;
   z-index: 2;
 }
@@ -1165,11 +1165,17 @@ nav {
 .pillars {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0;
+  height: 100%;
+  padding: 18px 30px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 12px;
 }
 
 .pillar {
-  padding: 24px 0;
+  padding: 26px 0;
   border-top: 1px solid rgba(255,255,255,0.07);
   display: grid;
   grid-template-columns: 44px 1fr;
@@ -1188,16 +1194,16 @@ nav {
 }
 
 .pillar-name {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   color: white;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 
 .pillar-desc {
-  font-size: 13px;
-  color: rgba(255,255,255,0.38);
-  line-height: 1.65;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.72;
 }
 
 /* ── EXPERIENCE STRIP ── */
@@ -1531,6 +1537,7 @@ footer {
   .about-section { padding: 80px 40px; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-copy { max-width: 100%; }
+  .pillars { height: auto; padding: 14px 22px; }
   .about-lead { font-size: 24px; }
   .about-body { font-size: 17px; line-height: 1.9; }
   .about-history-body { font-size: 15px; line-height: 1.85; }
@@ -1560,6 +1567,10 @@ footer {
     font-size: 28px;
   }
   .about-section { padding: 64px 24px; }
+  .pillars { padding: 12px 16px; border-radius: 10px; }
+  .pillar { padding: 20px 0; }
+  .pillar-name { font-size: 15px; }
+  .pillar-desc { font-size: 13px; line-height: 1.68; }
   .about-lead { font-size: 22px; }
   .about-body { font-size: 16px; line-height: 1.85; }
   .about-history-body { font-size: 14px; line-height: 1.8; }
