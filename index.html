@@ -822,9 +822,18 @@ nav {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
   transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+.bento-item[data-id="0"] img { object-position: center 42%; }
+.bento-item[data-id="1"] img { object-position: center 48%; }
+.bento-item[data-id="2"] img { object-position: center 44%; }
+.bento-item[data-id="3"] img { object-position: center 40%; }
+.bento-item[data-id="4"] img { object-position: center 47%; }
+.bento-item[data-id="5"] img { object-position: center 50%; }
+.bento-item[data-id="6"] img { object-position: center 45%; }
 
 .bento-item:hover img { transform: scale(1.05); }
 
@@ -848,15 +857,6 @@ nav {
   color: #fff;
   letter-spacing: 0.01em;
   line-clamp: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.bento-desc {
-  font-size: 11px;
-  color: rgba(255,255,255,0.65);
-  margin-top: 3px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1831,7 +1831,6 @@ footer {
       <img src="brand assets/menu/DSCF9132.jpg" alt="Golden K Signature Burger" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">Classic Smash</span>
-        <span class="bento-desc">Double patty, American cheese</span>
       </div>
     </div>
 
@@ -1839,7 +1838,6 @@ footer {
       <img src="brand assets/menu/DSCF9173.jpg" alt="Golden K Stack" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">Golden K Stack</span>
-        <span class="bento-desc">Our signature build, loaded</span>
       </div>
     </div>
 
@@ -1847,7 +1845,6 @@ footer {
       <img src="brand assets/menu/DSCF9231.jpg" alt="Korean BBQ Burger" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">Korean BBQ</span>
-        <span class="bento-desc">Gochujang glaze, kimchi slaw</span>
       </div>
     </div>
 
@@ -1855,7 +1852,6 @@ footer {
       <img src="brand assets/menu/DSCF9115.jpg" alt="Crispy Chicken" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">Crispy Chicken</span>
-        <span class="bento-desc">Buttermilk fried, honey drizzle</span>
       </div>
     </div>
 
@@ -1863,7 +1859,6 @@ footer {
       <img src="brand assets/menu/DSCF9156.jpg" alt="Cheese Pull" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">The Cheese Pull</span>
-        <span class="bento-desc">Triple cheese, griddled bun</span>
       </div>
     </div>
 
@@ -1871,7 +1866,6 @@ footer {
       <img src="brand assets/menu/DSCF9212.jpg" alt="Full Spread" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">The Full Spread</span>
-        <span class="bento-desc">Burger, fries, and a shake</span>
       </div>
     </div>
 
@@ -1879,7 +1873,6 @@ footer {
       <img src="brand assets/menu/DSCF9097.jpg" alt="Loaded Fries" loading="lazy">
       <div class="bento-hover-overlay">
         <span class="bento-title">Loaded Fries</span>
-        <span class="bento-desc">Cheese sauce, jalapeños, scallions</span>
       </div>
     </div>
 
