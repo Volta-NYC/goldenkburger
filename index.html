@@ -837,31 +837,6 @@ nav {
 
 .bento-item:hover img { transform: scale(1.05); }
 
-.bento-hover-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(10,17,64,0.82) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-}
-
-.bento-item:hover .bento-hover-overlay { opacity: 1; }
-
-.bento-title {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 13px;
-  color: #fff;
-  letter-spacing: 0.01em;
-  line-clamp: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 /* ── GALLERY MODAL ── */
 .gallery-modal-backdrop {
   position: fixed;
@@ -1829,51 +1804,30 @@ footer {
 
     <div class="bento-item b-c1r3 fade-up" data-id="0">
       <img src="brand assets/menu/DSCF9132.jpg" alt="Golden K Signature Burger" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">Classic Smash</span>
-      </div>
     </div>
 
     <div class="bento-item b-c2r2 fade-up fade-up-delay-1" data-id="1">
       <img src="brand assets/menu/DSCF9173.jpg" alt="Golden K Stack" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">Golden K Stack</span>
-      </div>
     </div>
 
     <div class="bento-item b-c1r3 fade-up fade-up-delay-1" data-id="2">
       <img src="brand assets/menu/DSCF9231.jpg" alt="Korean BBQ Burger" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">Korean BBQ</span>
-      </div>
     </div>
 
     <div class="bento-item b-c2r2 fade-up fade-up-delay-2" data-id="3">
       <img src="brand assets/menu/DSCF9115.jpg" alt="Crispy Chicken" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">Crispy Chicken</span>
-      </div>
     </div>
 
     <div class="bento-item b-c1r3 fade-up fade-up-delay-2" data-id="4">
       <img src="brand assets/menu/DSCF9156.jpg" alt="Cheese Pull" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">The Cheese Pull</span>
-      </div>
     </div>
 
     <div class="bento-item b-c1r3 fade-up fade-up-delay-3" data-id="6">
       <img src="brand assets/menu/DSCF9212.jpg" alt="Full Spread" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">The Full Spread</span>
-      </div>
     </div>
 
     <div class="bento-item b-c2r2 fade-up fade-up-delay-3" data-id="5">
       <img src="brand assets/menu/DSCF9097.jpg" alt="Loaded Fries" loading="lazy">
-      <div class="bento-hover-overlay">
-        <span class="bento-title">Loaded Fries</span>
-      </div>
     </div>
 
   </div>
