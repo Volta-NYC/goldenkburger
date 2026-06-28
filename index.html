@@ -1681,9 +1681,267 @@ footer {
 .fade-up-delay-2 { transition-delay: 0.2s; }
 .fade-up-delay-3 { transition-delay: 0.3s; }
 .fade-up-delay-4 { transition-delay: 0.4s; }
+
+/* ── AWARD BANNER ── */
+.award-banner {
+  background: linear-gradient(135deg, var(--navy-deeper) 0%, #0d1650 40%, #1a2060 100%);
+  border-top: 1px solid rgba(245,216,0,0.15);
+  border-bottom: 1px solid rgba(245,216,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.award-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 200% at 50% 50%, rgba(245,216,0,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* shimmer sweep */
+.award-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(245,216,0,0.06) 50%, transparent 100%);
+  animation: award-shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes award-shimmer {
+  0%   { left: -100%; }
+  50%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+.award-banner-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 64px;
+  text-decoration: none;
+  gap: 36px;
+  transition: background 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.award-banner-link:hover { background: rgba(245,216,0,0.04); }
+
+.award-logo-wrap {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.award-logo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,216,0,0.22) 0%, transparent 70%);
+  animation: award-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes award-pulse {
+  0%, 100% { transform: scale(1);   opacity: 0.7; }
+  50%       { transform: scale(1.1); opacity: 1; }
+}
+
+.award-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 18px rgba(245,216,0,0.35));
+  transition: filter 0.3s, transform 0.3s cubic-bezier(0.34,1.26,0.64,1);
+}
+
+.award-banner-link:hover .award-logo {
+  filter: drop-shadow(0 0 28px rgba(245,216,0,0.55));
+  transform: scale(1.06) rotate(-2deg);
+}
+
+.award-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.award-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--yellow-deep);
+}
+
+.award-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(22px, 3vw, 36px);
+  color: white;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.award-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+}
+
+.award-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: 1.5px solid rgba(245,216,0,0.4);
+  border-radius: 100px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.26,0.64,1);
+  flex-shrink: 0;
+}
+
+.award-banner-link:hover .award-cta-pill {
+  background: rgba(245,216,0,0.1);
+  border-color: rgba(245,216,0,0.7);
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .award-banner-link {
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 20px;
+    text-align: center;
+  }
+  .award-cta-pill { align-self: center; }
+}
+
+/* ── DESIGN IMPROVEMENTS ── */
+
+/* Magnetic hover on hero logo */
+.hero-logo-img {
+  transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1), box-shadow 0.4s;
+}
+.hero-logo-img:hover {
+  transform: scale(1.04) rotate(1deg);
+  box-shadow: 0 20px 70px rgba(245,216,0,0.25), 0 4px 20px rgba(10,17,64,0.4);
+}
+
+/* Stat number counter glow */
+.stat-num {
+  transition: color 0.3s, text-shadow 0.3s;
+}
+.stat:hover .stat-num {
+  text-shadow: 0 0 20px rgba(245,216,0,0.5);
+}
+
+/* Nav — active section indicator */
+.nav-links a.nav-active { color: var(--yellow) !important; }
+.nav-links a.nav-active::after { width: 100% !important; }
+
+/* Testimonial card — refined lift */
+.testimonial-card {
+  transition: background 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.34,1.26,0.64,1), box-shadow 0.25s;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(245,216,0,0.07);
+}
+
+/* Bento image — zoom already exists, add border glow */
+.bento-item {
+  transition: box-shadow 0.3s;
+}
+.bento-item:hover {
+  box-shadow: 0 0 0 2px rgba(245,216,0,0.35);
+}
+
+/* Yellow strip — subtle animated gradient */
+.experience-strip {
+  background: linear-gradient(90deg, #F5D800 0%, #FFE033 50%, #F5D800 100%);
+  background-size: 200% 100%;
+  animation: strip-shimmer 5s ease-in-out infinite;
+}
+
+@keyframes strip-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--yellow);
+  z-index: 10000;
+  width: 0%;
+  transition: width 0.05s linear;
+  box-shadow: 0 0 8px rgba(245,216,0,0.6);
+}
+
+/* Hero badge update */
+.hero-badge {
+  background: rgba(245,216,0,0.15);
+  border: 1px solid rgba(245,216,0,0.35);
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+}
+
+.hero-badge-crown {
+  font-size: 12px;
+  animation: badge-crown-spin 4s ease-in-out infinite;
+}
+
+@keyframes badge-crown-spin {
+  0%, 100% { transform: rotate(-5deg) scale(1); }
+  50%       { transform: rotate(5deg) scale(1.15); }
+}
+
+/* Counter animation */
+.stat-num[data-count] {
+  transition: color 0.3s;
+}
+
+/* Cursor glow (dark sections) */
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(circle, rgba(245,216,0,0.04) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  opacity: 0;
+}
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- PAGE LOADER -->
 <div id="page-loader">
@@ -1744,7 +2002,7 @@ footer {
     </div>
     <div class="hero-logo-display">
       <img src="brand assets/kburger.avif" alt="Golden K Burgers" class="hero-logo-img">
-      <span class="hero-badge">Bayside's Best Burger</span>
+      <span class="hero-badge"><span class="hero-badge-crown">👑</span> Best of the Boro 2026</span>
     </div>
   </div>
 </section>
@@ -1768,6 +2026,21 @@ footer {
     <span class="stat-label">Queens Neighborhood</span>
   </div>
 </div>
+
+<!-- AWARD BANNER -->
+<section class="award-banner scroll-reveal" id="award">
+  <a href="https://bestof.qns.com/best-burger-in-queens/" target="_blank" rel="noopener noreferrer" class="award-banner-link">
+    <div class="award-logo-wrap">
+      <img src="brand%20assets/best-of-boro-2026.jpg" alt="Best of the Boro 2026 Winner" class="award-logo">
+    </div>
+    <div class="award-text">
+      <div class="award-eyebrow">Official Recognition · Queens, NY</div>
+      <div class="award-title">Best Burger in Queens</div>
+      <div class="award-sub">2026 Best of the Boro — Voted by the community</div>
+    </div>
+    <div class="award-cta-pill">See the Award <span class="arrow">→</span></div>
+  </a>
+</section>
 
 <!-- MENU SECTION -->
 <section class="menu-section" id="menu">
@@ -2615,6 +2888,106 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mouseup', () => {
   if (dragState) { dock.style.transition = ''; dragState = null; }
 });
+
+// ── SCROLL PROGRESS BAR ──
+(function () {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = docH > 0 ? ((scrollTop / docH) * 100).toFixed(2) + '%' : '0%';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+// ── CURSOR GLOW ──
+(function () {
+  const glow = document.getElementById('cursorGlow');
+  if (!glow || window.matchMedia('(hover: none)').matches) return;
+  let mx = 0, my = 0, cx = 0, cy = 0, raf;
+  const darkSections = ['.about-section', '.testimonials-section', '#home', '.award-banner'];
+
+  const isOverDark = () => {
+    const el = document.elementFromPoint(mx, my);
+    if (!el) return false;
+    return darkSections.some(sel => el.closest(sel));
+  };
+
+  const step = () => {
+    cx += (mx - cx) * 0.12;
+    cy += (my - cy) * 0.12;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    raf = requestAnimationFrame(step);
+  };
+
+  window.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    glow.style.opacity = isOverDark() ? '1' : '0';
+    if (!raf) raf = requestAnimationFrame(step);
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+})();
+
+// ── ANIMATED STAT COUNTERS ──
+(function () {
+  const statNums = document.querySelectorAll('.stat-num');
+  if (!statNums.length) return;
+
+  const parseTarget = el => {
+    const raw = el.textContent.trim();
+    const match = raw.match(/^(\d+\.?\d*)(.*)/);
+    if (!match) return null;
+    return { num: parseFloat(match[1]), suffix: match[2] || '', el };
+  };
+
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+  const animateCounter = ({ num, suffix, el }) => {
+    const duration = 1200;
+    const start = performance.now();
+    const isFloat = String(num).includes('.');
+    const step = now => {
+      const p = Math.min((now - start) / duration, 1);
+      const val = num * easeOut(p);
+      el.textContent = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const parsed = parseTarget(entry.target);
+      if (parsed) animateCounter(parsed);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+
+  statNums.forEach(el => observer.observe(el));
+})();
+
+// ── ACTIVE NAV SECTION TRACKING ──
+(function () {
+  const sections = document.querySelectorAll('section[id], div[id="award"]');
+  const links = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (!sections.length || !links.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      links.forEach(l => l.classList.remove('nav-active'));
+      const active = [...links].find(l => l.getAttribute('href') === '#' + entry.target.id);
+      if (active) active.classList.add('nav-active');
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => observer.observe(s));
+})();
 
 </script>
 </body>
