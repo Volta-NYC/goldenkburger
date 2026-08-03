@@ -720,8 +720,26 @@ nav {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 14px;
   align-items: start;
+  width: 100%;
   padding: 16px 0;
   border-top: 1px solid rgba(10,17,64,0.1);
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: background 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-item-row:hover,
+.menu-item-row:focus-visible {
+  background: rgba(245,216,0,0.08);
+  outline: none;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .menu-item-info {
@@ -751,6 +769,116 @@ nav {
   line-height: 1;
   white-space: nowrap;
   margin-top: 2px;
+}
+
+.menu-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10,17,64,0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-detail-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.menu-detail-card {
+  position: relative;
+  width: min(520px, 100%);
+  background: white;
+  border-radius: 8px;
+  padding: 34px;
+  box-shadow: 0 28px 80px rgba(10,17,64,0.34);
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.24s cubic-bezier(0.34, 1.26, 0.64, 1);
+}
+
+.menu-detail-backdrop.open .menu-detail-card {
+  transform: translateY(0) scale(1);
+}
+
+.menu-detail-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--navy-pale);
+  color: var(--navy-deeper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-detail-close:hover {
+  background: var(--yellow-pale);
+  transform: scale(1.05);
+}
+
+.menu-detail-meta {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--yellow-deep);
+  margin-bottom: 12px;
+}
+
+.menu-detail-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(28px, 5vw, 44px);
+  line-height: 1;
+  color: var(--navy-deeper);
+  margin-bottom: 14px;
+}
+
+.menu-detail-price {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+  color: #cea544;
+  margin-bottom: 18px;
+}
+
+.menu-detail-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5260;
+  margin-bottom: 28px;
+}
+
+.menu-detail-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--yellow);
+  color: var(--navy-deeper);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 6px;
+  transition: background 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu-detail-order:hover {
+  background: var(--yellow-warm);
+  transform: translateY(-1px);
 }
 
 /* ── GALLERY SECTION ── */
@@ -1555,6 +1683,8 @@ footer {
   .menu-item-price {
     font-size: 28px;
   }
+  .menu-detail-card { padding: 28px 22px; }
+  .menu-detail-description { font-size: 15px; }
   .about-section { padding: 64px 24px; }
   .about-side .about-history { padding: 14px 14px; border-radius: 10px; }
   .pillars { padding: 8px 10px; border-radius: 10px; }
@@ -2060,6 +2190,21 @@ footer {
     <div class="menu-content" id="menuContent"></div>
   </div>
 </section>
+
+<div class="menu-detail-backdrop" id="menuDetailModal" role="dialog" aria-modal="true" aria-labelledby="menuDetailTitle" aria-hidden="true">
+  <div class="menu-detail-card">
+    <button class="menu-detail-close" id="menuDetailClose" type="button" aria-label="Close menu item details">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="menu-detail-meta" id="menuDetailMeta"></div>
+    <h3 class="menu-detail-title" id="menuDetailTitle"></h3>
+    <div class="menu-detail-price" id="menuDetailPrice"></div>
+    <p class="menu-detail-description" id="menuDetailDescription"></p>
+    <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="menu-detail-order" id="menuDetailOrder">
+      Order on Uber Eats <span class="arrow">→</span>
+    </a>
+  </div>
+</div>
 
 <!-- GALLERY SECTION -->
 <section class="gallery-section" id="gallery">
@@ -2748,20 +2893,81 @@ function formatPrice(value) {
   return `$${Number(value).toFixed(2)}`;
 }
 
+const UBER_STORE_URL = 'https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg';
+const UBER_MENU_CONTEXT = {
+  storeUuid: 'f5de1e58-6ede-4f1c-8a70-0ead87c1a7a6',
+  sectionUuid: '8fcf6f65-26ad-5527-b144-1d2e1a6d230a',
+};
+const UBER_SUBSECTIONS = {
+  'APPETIZERS': '2e2735c3-454c-5e0d-b550-ea0869485669',
+  'CHICKEN WINGS': '8919abea-7c0f-5052-b1b3-74284cfe6b63',
+  'SEA BURGERS': 'e0eaff52-d211-5d41-98e7-a92151141854',
+  'VEGGIE BURGERS': 'a64058df-cbf8-52bd-8c9b-6a737fefe71c',
+  'BEEF BURGERS': '6504ab47-84e0-594e-9b25-429cb040537d',
+};
+const UBER_ITEM_UUIDS = {
+  'bbq chip': 'e4831c6f-5fcc-5fe7-8309-bbe2a6effd49',
+  'big kahuna': 'cd47b4ae-c5e7-5e5f-bded-5fbe560ed971',
+  'buffalo cauliflower bites': '1903914c-0e43-5b98-8754-5f896c5516ac',
+  'bulgogi burger': '6f38318b-face-46d6-a270-52ba1001bc80',
+  'buttermilk': '0c8be1c6-49a3-5038-ad92-438ab9ec7fbc',
+  'chicken tenders': 'b4378bdd-6504-50cc-9675-466f4646116a',
+  'classic american': '02229857-4f94-5172-b294-ee2fd3ae81cb',
+  'cordon bleu bites': '2fcc783a-dd51-5041-be34-fd1baa8de917',
+  'corn fritters': 'c5d751bb-f69a-5032-9d7b-23ba6e7ec1c4',
+  'falafel bites': 'eecb8d7f-24c4-580d-b63f-ade3821e7e30',
+  'farmhouse': '301ec352-70fb-59a1-a055-4111f6e1fd17',
+  'golden pickles chips': '153606cc-a97c-5b55-be66-9b9eab5cf67f',
+  'gourmet black bean': '68f3f5be-8824-5028-9f28-c12dbb5d9b39',
+  'hummus and falafel': '3199885a-f997-599d-b932-9b82925edb86',
+  'hummus falafel': '3199885a-f997-599d-b932-9b82925edb86',
+  'impossible burger': '9fdf71d3-06c7-59a7-a410-1185188b3026',
+  'kimchi bulgogi burger': 'b97438de-8095-449a-94f9-899d7f303afe',
+  'lemon cod': '2f047640-9760-58f4-9c57-a3c9bab338e0',
+  'loaded sriracha': '0453c9ad-99ac-4423-a61e-c3d62e359ca9',
+  'po boy': 'e6e3ff82-9bbf-5b9c-bab2-610f39d0febe',
+  'smoky gouda arancini': '2b1aa290-bf6d-554b-8a02-93caba9cc1cc',
+  'southwest': '12d00035-4ea8-5860-8c60-386aa7e25eb0',
+  'the a1': 'bc017966-4ad1-57af-bc9a-cafa4cb2fad3',
+  'thick beer battered onion rings': '77473b66-a389-5e4d-8bef-b68add84785c',
+  '6 pieces': '1a8b2274-ec64-5899-8c32-96c6ea0146fd',
+  '9 pieces': 'fda67d82-a361-5d27-aaf6-df482d5ac269',
+  '12 pieces': '0493a415-17f0-5296-9f12-4e382451da29',
+};
+
+function normalizeMenuKey(value) {
+  return String(value).toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function buildUberOrderUrl(item, category) {
+  const itemUuid = UBER_ITEM_UUIDS[normalizeMenuKey(item.name)];
+  const subsectionUuid = UBER_SUBSECTIONS[category.name];
+  if (!itemUuid || !subsectionUuid) return UBER_STORE_URL;
+
+  const ctx = {
+    ...UBER_MENU_CONTEXT,
+    subsectionUuid,
+    itemUuid,
+    showSeeDetailsCTA: true,
+  };
+  const encodedCtx = encodeURIComponent(encodeURIComponent(JSON.stringify(ctx)));
+  return `${UBER_STORE_URL}?mod=quickView&modctx=${encodedCtx}&ps=1`;
+}
+
 function renderMenuCategory(index) {
   const category = fullMenuData[index];
   if (!category || !menuContent) return;
 
-  const itemsMarkup = category.items.map((item) => {
+  const itemsMarkup = category.items.map((item, itemIndex) => {
     const desc = item.description ? `<div class="menu-item-description">${escapeHtml(item.description)}</div>` : '';
     return `
-      <article class="menu-item-row">
+      <button type="button" class="menu-item-row" data-category-index="${index}" data-item-index="${itemIndex}" aria-label="View details for ${escapeHtml(item.name)}">
         <div class="menu-item-info">
           <div class="menu-item-name">${escapeHtml(item.name)}</div>
           ${desc}
         </div>
         <div class="menu-item-price">${formatPrice(item.price)}</div>
-      </article>
+      </button>
     `;
   }).join('');
 
@@ -2793,6 +2999,49 @@ if (menuTabList && menuContent) {
   });
   renderMenuCategory(0);
 }
+
+const menuDetailModal = document.getElementById('menuDetailModal');
+const menuDetailClose = document.getElementById('menuDetailClose');
+const menuDetailMeta = document.getElementById('menuDetailMeta');
+const menuDetailTitle = document.getElementById('menuDetailTitle');
+const menuDetailPrice = document.getElementById('menuDetailPrice');
+const menuDetailDescription = document.getElementById('menuDetailDescription');
+const menuDetailOrder = document.getElementById('menuDetailOrder');
+
+function openMenuDetail(categoryIndex, itemIndex) {
+  const category = fullMenuData[categoryIndex];
+  const item = category?.items[itemIndex];
+  if (!category || !item || !menuDetailModal) return;
+
+  menuDetailMeta.textContent = category.name;
+  menuDetailTitle.textContent = item.name;
+  menuDetailPrice.textContent = formatPrice(item.price);
+  menuDetailDescription.textContent = item.description || category.description || 'View this item on Uber Eats for current options, add-ons, and availability.';
+  menuDetailOrder.href = buildUberOrderUrl(item, category);
+  menuDetailModal.classList.add('open');
+  menuDetailModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenuDetail() {
+  if (!menuDetailModal) return;
+  menuDetailModal.classList.remove('open');
+  menuDetailModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+menuContent?.addEventListener('click', (event) => {
+  const row = event.target.closest('.menu-item-row');
+  if (!row) return;
+  openMenuDetail(Number(row.dataset.categoryIndex), Number(row.dataset.itemIndex));
+});
+menuDetailClose?.addEventListener('click', closeMenuDetail);
+menuDetailModal?.addEventListener('click', (event) => {
+  if (event.target === menuDetailModal) closeMenuDetail();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menuDetailModal?.classList.contains('open')) closeMenuDetail();
+});
 
 // ── BENTO GALLERY ──
 const galleryData = [
