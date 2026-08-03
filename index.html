@@ -364,7 +364,7 @@ nav {
   justify-content: center;
   overflow: hidden;
   z-index: 2;
-  padding: 120px 64px 80px 24px;
+  padding: 120px 84px 80px 28px;
 }
 
 .hero-right-yellow-panel {
@@ -377,24 +377,22 @@ nav {
 
 .hero-logo-display {
   position: absolute;
-  right: 12%;
-  bottom: 12%;
+  right: 18%;
+  bottom: 9%;
   z-index: 3;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 12px;
   margin-left: 0;
-  padding: 12px 16px 12px 12px;
+  padding: 8px;
   background: rgba(255,255,255,0.9);
   border: 1px solid rgba(255,255,255,0.7);
   border-radius: 999px;
-  box-shadow: 0 14px 42px rgba(10,17,64,0.24);
+  box-shadow: 0 12px 34px rgba(10,17,64,0.22);
 }
 
 .hero-logo-img {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   background: white;
   border-radius: 50%;
@@ -404,8 +402,8 @@ nav {
 
 .hero-food-card {
   position: relative;
-  width: min(520px, 100%);
-  aspect-ratio: 4 / 5;
+  width: min(430px, 92%);
+  aspect-ratio: 4 / 4.6;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.26);
@@ -430,9 +428,9 @@ nav {
 
 .hero-food-copy {
   position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 28px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
   z-index: 2;
 }
 
@@ -448,8 +446,8 @@ nav {
 
 .hero-food-copy strong {
   display: block;
-  max-width: 340px;
-  font-size: 22px;
+  max-width: 300px;
+  font-size: 20px;
   line-height: 1.15;
   color: white;
 }
@@ -466,19 +464,6 @@ nav {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
-}
-
-.hero-badge {
-  background: transparent;
-  color: var(--navy-deeper);
-  font-family: 'Archivo', sans-serif;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
 }
 
 /* ── HERO ENTRANCE + SCROLL MOTION ── */
@@ -1248,7 +1233,7 @@ nav {
 
 /* ── ABOUT SECTION ── */
 .about-section {
-  padding: 88px 64px;
+  padding: 96px 72px;
   background: var(--navy-deeper);
   position: relative;
   overflow: hidden;
@@ -1282,23 +1267,23 @@ nav {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 0.98fr) minmax(360px, 0.82fr);
+  gap: 56px;
+  align-items: start;
   position: relative;
   z-index: 2;
 }
 
 .about-copy {
-  max-width: 760px;
+  max-width: 700px;
 }
 
 .about-lead {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 27px;
-  line-height: 1.45;
+  font-size: 24px;
+  line-height: 1.48;
   color: white;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   letter-spacing: 0;
 }
 
@@ -1307,10 +1292,10 @@ nav {
 }
 
 .about-body {
-  font-size: 18px;
-  color: rgba(255,255,255,0.84);
-  line-height: 1.95;
-  margin-bottom: 36px;
+  font-size: 16px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.85;
+  margin-bottom: 30px;
   font-weight: 400;
 }
 
@@ -1326,13 +1311,13 @@ nav {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--yellow);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .about-history-body {
-  font-size: 16px;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.9;
+  font-size: 15px;
+  color: rgba(255,255,255,0.76);
+  line-height: 1.78;
   font-weight: 400;
 }
 
@@ -1381,12 +1366,12 @@ nav {
 .about-side {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .about-side .about-history {
   margin-bottom: 0;
-  padding: 20px 24px;
+  padding: 26px 28px;
   border-top: none;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.11);
@@ -1397,16 +1382,16 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 2px;
+  gap: 4px;
   height: auto;
-  padding: 10px 16px;
+  padding: 14px 18px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: 12px;
 }
 
 .pillar {
-  padding: 10px 0;
+  padding: 9px 0;
   border-top: none;
   display: grid;
   grid-template-columns: 22px 1fr;
@@ -1716,14 +1701,14 @@ footer {
   color: rgba(255,255,255,0.2);
 }
 
-.footer-volta-link {
+.footer-novus-link {
   color: #84d61a;
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.footer-volta-link:hover {
+.footer-novus-link:hover {
   opacity: 0.82;
 }
 
@@ -1764,13 +1749,13 @@ footer {
   .stats-bar { padding: 32px 40px; }
   .menu-section { padding: 80px 40px; }
   .about-section { padding: 80px 40px; }
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-copy { max-width: 100%; }
-  .about-side .about-history { padding: 16px 18px; }
-  .pillars { padding: 8px 14px; }
-  .about-lead { font-size: 24px; }
-  .about-body { font-size: 17px; line-height: 1.9; }
-  .about-history-body { font-size: 15px; line-height: 1.85; }
+  .about-side .about-history { padding: 24px 26px; }
+  .pillars { padding: 12px 16px; }
+  .about-lead { font-size: 23px; }
+  .about-body { font-size: 16px; line-height: 1.82; }
+  .about-history-body { font-size: 15px; line-height: 1.78; }
   .experience-strip { padding: 48px 40px; flex-direction: column; align-items: flex-start; }
   .location-section { padding: 80px 40px; }
   .location-grid { grid-template-columns: 1fr; }
@@ -1809,13 +1794,14 @@ footer {
   .menu-detail-card { padding: 28px 22px; }
   .menu-detail-description { font-size: 15px; }
   .about-section { padding: 64px 24px; }
-  .about-side .about-history { padding: 14px 14px; border-radius: 10px; }
+  .about-side { gap: 18px; }
+  .about-side .about-history { padding: 20px 18px; border-radius: 10px; }
   .pillars { padding: 8px 10px; border-radius: 10px; }
   .pillar { padding: 8px 0; grid-template-columns: 20px 1fr; gap: 8px; }
   .pillar-name { font-size: 11px; }
-  .about-lead { font-size: 22px; }
-  .about-body { font-size: 16px; line-height: 1.85; }
-  .about-history-body { font-size: 14px; line-height: 1.8; }
+  .about-lead { font-size: 21px; }
+  .about-body { font-size: 15px; line-height: 1.78; }
+  .about-history-body { font-size: 14px; line-height: 1.75; }
   .about-actions { gap: 14px 18px; }
   .about-ig { font-size: 12px; letter-spacing: 0.06em; }
   .experience-strip { padding: 40px 24px; }
@@ -2081,12 +2067,6 @@ footer {
   background: var(--yellow);
 }
 
-/* Hero badge update */
-.hero-badge {
-  color: var(--navy-deeper);
-  font-size: 10px;
-}
-
 /* Counter animation */
 .stat-num[data-count] {
   transition: color 0.3s;
@@ -2162,7 +2142,6 @@ footer {
     </div>
     <div class="hero-logo-display">
       <img src="brand assets/kburger.avif" alt="Golden K Burgers" class="hero-logo-img">
-      <span class="hero-badge">Best of the Boro 2026</span>
     </div>
   </div>
 </section>
@@ -2485,7 +2464,7 @@ footer {
   <hr class="footer-divider">
 
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 Golden K Burgers. All rights reserved. · made by <a href="https://voltanyc.org/" target="_blank" class="footer-volta-link">volta</a></span>
+    <span class="footer-copy">© 2026 Golden K Burgers. All rights reserved. · made by <a href="https://novusnyc.org/" target="_blank" class="footer-novus-link">novus</a></span>
     <span class="footer-tagline">Queens-proud since day one.</span>
   </div>
 </footer>
