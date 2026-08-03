@@ -1212,7 +1212,7 @@ nav {
 
 /* ── ABOUT SECTION ── */
 .about-section {
-  padding: 96px 72px;
+  padding: 112px 72px;
   background: var(--navy-deeper);
   position: relative;
   overflow: hidden;
@@ -1242,27 +1242,30 @@ nav {
 
 .about-section .section-eyebrow { color: rgba(255,255,255,0.35); }
 .about-section .section-eyebrow::before { background: var(--yellow-deep); }
-.about-section .section-title { color: white; }
+.about-section .section-title {
+  color: white;
+  margin-bottom: 22px;
+}
 
 .about-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.98fr) minmax(360px, 0.82fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(400px, 0.9fr);
+  gap: 84px;
   align-items: start;
   position: relative;
   z-index: 2;
 }
 
 .about-copy {
-  max-width: 700px;
+  max-width: 720px;
 }
 
 .about-lead {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 24px;
-  line-height: 1.48;
+  font-size: 25px;
+  line-height: 1.42;
   color: white;
-  margin-bottom: 28px;
+  margin-bottom: 34px;
   letter-spacing: 0;
 }
 
@@ -1270,11 +1273,18 @@ nav {
   color: var(--yellow);
 }
 
+.about-paragraphs,
+.about-history-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
 .about-body {
   font-size: 16px;
-  color: rgba(255,255,255,0.78);
-  line-height: 1.85;
-  margin-bottom: 30px;
+  color: rgba(255,255,255,0.74);
+  line-height: 1.9;
+  margin-bottom: 0;
   font-weight: 400;
 }
 
@@ -1290,13 +1300,13 @@ nav {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--yellow);
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 }
 
 .about-history-body {
   font-size: 15px;
-  color: rgba(255,255,255,0.76);
-  line-height: 1.78;
+  color: rgba(255,255,255,0.74);
+  line-height: 1.88;
   font-weight: 400;
 }
 
@@ -1305,6 +1315,7 @@ nav {
   flex-wrap: wrap;
   gap: 18px 24px;
   align-items: center;
+  margin-top: 34px;
 }
 
 .about-cta {
@@ -1345,12 +1356,12 @@ nav {
 .about-side {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .about-side .about-history {
   margin-bottom: 0;
-  padding: 26px 28px;
+  padding: 34px 36px;
   border-top: none;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.11);
@@ -1358,23 +1369,26 @@ nav {
 }
 
 .pillars {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   justify-content: flex-start;
-  gap: 4px;
+  gap: 8px;
   height: auto;
-  padding: 14px 18px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 12px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 
 .pillar {
-  padding: 9px 0;
-  border-top: none;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.025);
   display: grid;
-  grid-template-columns: 22px 1fr;
-  gap: 10px;
+  grid-template-columns: 18px 1fr;
+  gap: 8px;
   align-items: center;
 }
 
@@ -1726,14 +1740,15 @@ footer {
   .hero-right { height: 420px; }
   .stats-bar { padding: 32px 40px; }
   .menu-section { padding: 80px 40px; }
-  .about-section { padding: 80px 40px; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-section { padding: 92px 40px; }
+  .about-grid { grid-template-columns: 1fr; gap: 52px; }
   .about-copy { max-width: 100%; }
-  .about-side .about-history { padding: 24px 26px; }
-  .pillars { padding: 12px 16px; }
+  .about-side .about-history { padding: 30px 32px; }
+  .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-lead { font-size: 23px; }
-  .about-body { font-size: 16px; line-height: 1.82; }
-  .about-history-body { font-size: 15px; line-height: 1.78; }
+  .about-paragraphs { gap: 20px; }
+  .about-body { font-size: 16px; line-height: 1.86; }
+  .about-history-body { font-size: 15px; line-height: 1.82; }
   .experience-strip { padding: 48px 40px; flex-direction: column; align-items: flex-start; }
   .location-section { padding: 80px 40px; }
   .location-grid { grid-template-columns: 1fr; }
@@ -1852,15 +1867,18 @@ footer {
   }
   .menu-detail-card { padding: 28px 22px; }
   .menu-detail-description { font-size: 15px; }
-  .about-section { padding: 64px 24px; }
-  .about-side { gap: 18px; }
-  .about-side .about-history { padding: 20px 18px; border-radius: 10px; }
-  .pillars { padding: 8px 10px; border-radius: 10px; }
-  .pillar { padding: 8px 0; grid-template-columns: 20px 1fr; gap: 8px; }
+  .about-section { padding: 76px 24px; }
+  .about-grid { gap: 42px; }
+  .about-side { gap: 16px; }
+  .about-side .about-history { padding: 24px 20px; border-radius: 10px; }
+  .pillars { grid-template-columns: 1fr; gap: 8px; }
+  .pillar { padding: 10px 12px; grid-template-columns: 20px 1fr; gap: 8px; }
   .pillar-name { font-size: 11px; }
   .about-lead { font-size: 21px; }
-  .about-body { font-size: 15px; line-height: 1.78; }
-  .about-history-body { font-size: 14px; line-height: 1.75; }
+  .about-paragraphs,
+  .about-history-copy { gap: 18px; }
+  .about-body { font-size: 15px; line-height: 1.82; }
+  .about-history-body { font-size: 14px; line-height: 1.78; }
   .about-actions { gap: 14px 18px; }
   .about-ig { font-size: 12px; letter-spacing: 0.06em; }
   .experience-strip { padding: 40px 24px; }
@@ -2339,7 +2357,11 @@ footer {
       <div class="section-eyebrow">4 — Our Story</div>
       <h2 class="section-title">Who We Are</h2>
       <p class="about-lead">The <span class="highlight">crowned king</span> of Queens burgers — built from two worlds, one kitchen.</p>
-      <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant in Bayside, Queens. We serve a broad lineup of beef, veggie, seafood, and chicken burgers, each plate built for real appetite and consistency from first bite to last. Every burger is served with crispy fries, pepperoncini, and pickles, and guests can upgrade fries with favorites like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more.<br><br>Our kitchen is known for bold flavor and generous portions. The double-patty beef builds are designed to feel stacked, satisfying, and unmistakably Golden K. Alongside burgers, our menu includes brunch, weekday lunch deals, late-night options, desserts and milkshakes, appetizers, wings, beer, happy hour specials, and more, so there is always something for both first-time guests and regulars.<br><br>As a family-run small business, we focus on hospitality, quality, and staying close to the neighborhood that supports us. The goal is simple: make food worth coming back for and become a lasting local favorite in Queens.</p>
+      <div class="about-paragraphs">
+        <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant in Bayside, Queens. We serve a broad lineup of beef, veggie, seafood, and chicken burgers, each plate built for real appetite and consistency from first bite to last.</p>
+        <p class="about-body">Every burger is served with crispy fries, pepperoncini, and pickles, and guests can upgrade fries with favorites like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more. Our kitchen is known for bold flavor, generous portions, and double-patty beef builds that feel stacked, satisfying, and unmistakably Golden K.</p>
+        <p class="about-body">Alongside burgers, the menu includes brunch, weekday lunch deals, late-night options, desserts and milkshakes, appetizers, wings, beer, happy hour specials, and more. As a family-run small business, the goal is simple: make food worth coming back for and become a lasting local favorite in Queens.</p>
+      </div>
       <div class="about-actions">
         <a href="#location" class="about-cta">Find Us in Bayside <span class="arrow">→</span></a>
         <a href="https://www.instagram.com/goldenkburgers/" target="_blank" rel="noopener noreferrer" class="about-ig">Instagram @goldenkburgers <span class="arrow">→</span></a>
@@ -2349,7 +2371,10 @@ footer {
     <div class="about-side">
       <div class="about-history">
         <h3 class="about-history-title">Restaurant History</h3>
-        <p class="about-history-body">Golden K Burgers (GKB) celebrated its 2nd anniversary in May 2026, marking a strong early chapter built on consistency, repeat guests, and neighborhood support. Owned and operated by the Kim Family, Korean Americans who brought their culture, experience, and influence into the concept, GKB offers a distinct take on the classic American burger spot. With 20+ towering burger options and a reputation for bold flavor and generous portions, the restaurant has quickly built a loyal local following. The name Golden K comes directly from the family name, Kim: Kim is associated with gold, and the K represents family identity, connecting the brand back to its roots.</p>
+        <div class="about-history-copy">
+          <p class="about-history-body">Golden K Burgers (GKB) celebrated its 2nd anniversary in May 2026, marking a strong early chapter built on consistency, repeat guests, and neighborhood support. Owned and operated by the Kim Family, Korean Americans who brought their culture, experience, and influence into the concept, GKB offers a distinct take on the classic American burger spot.</p>
+          <p class="about-history-body">With 20+ towering burger options and a reputation for bold flavor and generous portions, the restaurant has quickly built a loyal local following. The name Golden K comes directly from the family name, Kim: Kim is associated with gold, and the K represents family identity, connecting the brand back to its roots.</p>
+        </div>
       </div>
       <div class="pillars">
         <div class="pillar">
