@@ -1883,38 +1883,11 @@ footer {
 
 /* ── AWARD BANNER ── */
 .award-banner {
-  background: linear-gradient(135deg, var(--navy-deeper) 0%, #0d1650 40%, #1a2060 100%);
+  background: var(--navy-deeper);
   border-top: 1px solid rgba(245,216,0,0.15);
   border-bottom: 1px solid rgba(245,216,0,0.15);
   position: relative;
   overflow: hidden;
-}
-
-.award-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 200% at 50% 50%, rgba(245,216,0,0.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* shimmer sweep */
-.award-banner::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(245,216,0,0.06) 50%, transparent 100%);
-  animation: award-shimmer 4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes award-shimmer {
-  0%   { left: -100%; }
-  50%  { left: 150%; }
-  100% { left: 150%; }
 }
 
 .award-banner-link {
@@ -1936,20 +1909,6 @@ footer {
   position: relative;
 }
 
-.award-logo-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,216,0,0.22) 0%, transparent 70%);
-  animation: award-pulse 2.8s ease-in-out infinite;
-}
-
-@keyframes award-pulse {
-  0%, 100% { transform: scale(1);   opacity: 0.7; }
-  50%       { transform: scale(1.1); opacity: 1; }
-}
-
 .award-logo {
   width: 100px;
   height: 100px;
@@ -1958,13 +1917,13 @@ footer {
   display: block;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 0 18px rgba(245,216,0,0.35));
+  filter: drop-shadow(0 10px 18px rgba(10,17,64,0.26));
   transition: filter 0.3s, transform 0.3s cubic-bezier(0.34,1.26,0.64,1);
 }
 
 .award-banner-link:hover .award-logo {
-  filter: drop-shadow(0 0 28px rgba(245,216,0,0.55));
-  transform: scale(1.06) rotate(-2deg);
+  filter: drop-shadow(0 14px 24px rgba(10,17,64,0.34));
+  transform: scale(1.03);
 }
 
 .award-text {
@@ -2039,12 +1998,8 @@ footer {
   box-shadow: 0 20px 70px rgba(245,216,0,0.25), 0 4px 20px rgba(10,17,64,0.4);
 }
 
-/* Stat number counter glow */
 .stat-num {
-  transition: color 0.3s, text-shadow 0.3s;
-}
-.stat:hover .stat-num {
-  text-shadow: 0 0 20px rgba(245,216,0,0.5);
+  transition: color 0.3s;
 }
 
 /* Nav — active section indicator */
@@ -2068,29 +2023,8 @@ footer {
   box-shadow: 0 0 0 2px rgba(245,216,0,0.35);
 }
 
-/* Yellow strip — subtle animated gradient */
 .experience-strip {
-  background: linear-gradient(90deg, #F5D800 0%, #FFE033 50%, #F5D800 100%);
-  background-size: 200% 100%;
-  animation: strip-shimmer 5s ease-in-out infinite;
-}
-
-@keyframes strip-shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50%       { background-position: 100% 50%; }
-}
-
-/* Scroll progress bar */
-#scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
   background: var(--yellow);
-  z-index: 10000;
-  width: 0%;
-  transition: width 0.05s linear;
-  box-shadow: 0 0 8px rgba(245,216,0,0.6);
 }
 
 /* Hero badge update */
@@ -2104,28 +2038,9 @@ footer {
   transition: color 0.3s;
 }
 
-/* Cursor glow (dark sections) */
-.cursor-glow {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  background: radial-gradient(circle, rgba(245,216,0,0.04) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s;
-  opacity: 0;
-}
 </style>
 </head>
 <body>
-
-<!-- SCROLL PROGRESS -->
-<div id="scroll-progress"></div>
-
-<!-- CURSOR GLOW -->
-<div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- PAGE LOADER -->
 <div id="page-loader">
@@ -3198,49 +3113,6 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mouseup', () => {
   if (dragState) { dock.style.transition = ''; dragState = null; }
 });
-
-// ── SCROLL PROGRESS BAR ──
-(function () {
-  const bar = document.getElementById('scroll-progress');
-  if (!bar) return;
-  const update = () => {
-    const scrollTop = window.scrollY;
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = docH > 0 ? ((scrollTop / docH) * 100).toFixed(2) + '%' : '0%';
-  };
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
-
-// ── CURSOR GLOW ──
-(function () {
-  const glow = document.getElementById('cursorGlow');
-  if (!glow || window.matchMedia('(hover: none)').matches) return;
-  let mx = 0, my = 0, cx = 0, cy = 0, raf;
-  const darkSections = ['.about-section', '.testimonials-section', '#home', '.award-banner'];
-
-  const isOverDark = () => {
-    const el = document.elementFromPoint(mx, my);
-    if (!el) return false;
-    return darkSections.some(sel => el.closest(sel));
-  };
-
-  const step = () => {
-    cx += (mx - cx) * 0.12;
-    cy += (my - cy) * 0.12;
-    glow.style.left = cx + 'px';
-    glow.style.top  = cy + 'px';
-    raf = requestAnimationFrame(step);
-  };
-
-  window.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    glow.style.opacity = isOverDark() ? '1' : '0';
-    if (!raf) raf = requestAnimationFrame(step);
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
-})();
 
 // ── ANIMATED STAT COUNTERS ──
 (function () {
