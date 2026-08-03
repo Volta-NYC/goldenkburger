@@ -267,12 +267,14 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-family: 'Archivo Black', sans-serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--yellow);
   flex-shrink: 0;
+}
+
+.order-card-icon svg {
+  width: 25px;
+  height: 25px;
+  stroke: currentColor;
 }
 
 .order-card-text { flex: 1; }
@@ -392,7 +394,7 @@ nav {
     <li><a href="index.html#location">Visit</a></li>
     <li><a href="reservations.html">Reservations</a></li>
   </ul>
-  <a href="order.html" class="nav-cta active">Order Online</a>
+  <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="nav-cta active">Order Online</a>
 </nav>
 
 <!-- MAIN -->
@@ -412,7 +414,7 @@ nav {
       <p class="order-desc">25+ burgers, crispy fries, and everything in between. Order pickup or delivery — fresh, fast, and built to the same standard as always.</p>
 
       <div class="order-options">
-        <a href="https://www.goldenkburgersnyc.com/order" target="_blank" class="order-btn-main">
+        <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="order-btn-main">
           <span>Start Your Order</span>
           <span class="order-btn-arrow">→</span>
         </a>
@@ -424,8 +426,14 @@ nav {
 
     <!-- RIGHT -->
     <div class="order-right">
-      <a href="https://www.goldenkburgersnyc.com/order" target="_blank" class="order-card featured">
-        <div class="order-card-icon">PK</div>
+      <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="order-card featured">
+        <div class="order-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
         <div class="order-card-text">
           <div class="order-card-title">Pickup</div>
           <div class="order-card-sub">Ready in 15–20 min · 40-17 Bell Blvd, Bayside</div>
@@ -434,8 +442,16 @@ nav {
         <span class="order-card-arrow">→</span>
       </a>
 
-      <a href="https://www.goldenkburgersnyc.com/order" target="_blank" class="order-card">
-        <div class="order-card-icon">DL</div>
+      <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="order-card">
+        <div class="order-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+            <path d="M15 18H9"/>
+            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62L18.3 9H14"/>
+            <circle cx="7" cy="18" r="2"/>
+            <circle cx="17" cy="18" r="2"/>
+          </svg>
+        </div>
         <div class="order-card-text">
           <div class="order-card-title">Delivery</div>
           <div class="order-card-sub">To your door · Delivery area varies by platform</div>
@@ -444,7 +460,14 @@ nav {
       </a>
 
       <a href="reservations.html" class="order-card">
-        <div class="order-card-icon">DI</div>
+        <div class="order-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 2v7c0 1.7 1.3 3 3 3s3-1.3 3-3V2"/>
+            <path d="M6 2v20"/>
+            <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"/>
+            <path d="M21 15v7"/>
+          </svg>
+        </div>
         <div class="order-card-text">
           <div class="order-card-title">Dine In</div>
           <div class="order-card-sub">Reserve your table · Walk-ins also welcome</div>
