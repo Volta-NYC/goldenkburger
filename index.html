@@ -711,13 +711,34 @@ nav {
   line-height: 1.75;
 }
 
+.menu-header-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.menu-click-hint {
+  max-width: 260px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #6e7580;
+  text-align: right;
+}
+
 .menu-shell {
-  border-top: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 16px 44px rgba(10,17,64,0.06);
 }
 
 .menu-tab-bar {
   overflow-x: auto;
   border-bottom: 1px solid var(--border);
+  background: #f7f8fc;
+  padding: 10px;
 }
 
 .menu-tab-list {
@@ -728,31 +749,33 @@ nav {
 }
 
 .menu-tab-btn {
-  border: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
   background: transparent;
   color: rgba(10,17,64,0.58);
   font-family: 'Archivo', sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 16px 12px 14px;
-  border-bottom: 2px solid transparent;
+  padding: 10px 14px;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: background 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .menu-tab-btn:hover {
   color: var(--navy-deeper);
+  background: white;
 }
 
 .menu-tab-btn.active {
-  color: var(--navy-deeper);
-  border-color: var(--yellow-deep);
+  color: white;
+  background: var(--navy-deeper);
+  border-color: var(--navy-deeper);
 }
 
 .menu-content {
-  padding-top: 28px;
+  padding: 28px;
 }
 
 .menu-active-title {
@@ -775,14 +798,14 @@ nav {
 .menu-items-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 28px;
+  gap: 0 28px;
 }
 
 .menu-item-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 14px;
-  align-items: start;
+  align-items: center;
   width: 100%;
   padding: 16px 0;
   border-top: 1px solid rgba(10,17,64,0.1);
@@ -834,6 +857,27 @@ nav {
   line-height: 1;
   white-space: nowrap;
   margin-top: 2px;
+}
+
+.menu-item-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--navy-pale);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.menu-item-row:hover .menu-item-action,
+.menu-item-row:focus-visible .menu-item-action {
+  background: var(--yellow);
+  color: var(--navy-deeper);
 }
 
 .menu-detail-backdrop {
@@ -1745,12 +1789,22 @@ footer {
   .stat + .stat::before { display: none; }
   .menu-section { padding: 64px 24px; }
   .menu-section-header { flex-direction: column; align-items: flex-start; }
-  .menu-tab-btn { font-size: 11px; padding: 14px 10px 13px; }
+  .menu-header-actions { align-items: flex-start; }
+  .menu-click-hint { text-align: left; }
+  .menu-tab-btn { font-size: 11px; padding: 9px 12px; }
   .menu-active-title { font-size: clamp(32px, 10vw, 50px); }
   .menu-items-grid { grid-template-columns: 1fr; }
-  .menu-item-row { gap: 12px; }
+  .menu-content { padding: 22px 16px; }
+  .menu-item-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+  }
   .menu-item-price {
-    font-size: 28px;
+    font-size: 22px;
+  }
+  .menu-item-action {
+    grid-column: 1 / -1;
+    justify-self: flex-start;
   }
   .menu-detail-card { padding: 28px 22px; }
   .menu-detail-description { font-size: 15px; }
@@ -2156,7 +2210,10 @@ footer {
       <h2 class="section-title">Everything On<br><span class="accent">The Current Menu</span></h2>
       <p class="menu-sub">Synced from the live online ordering menu on May 12, 2026. Includes all 11 categories and 59 currently listed items.</p>
     </div>
-    <a href="https://www.goldenkburgersnyc.com/order" target="_blank" class="menu-link">Order Direct <span class="arrow">→</span></a>
+    <div class="menu-header-actions">
+      <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="menu-link">Order on Uber Eats <span class="arrow">→</span></a>
+      <p class="menu-click-hint">Tap any item to see details before ordering.</p>
+    </div>
   </div>
 
   <div class="menu-shell scroll-reveal scroll-reveal-delay-1">
@@ -2943,6 +3000,7 @@ function renderMenuCategory(index) {
           ${desc}
         </div>
         <div class="menu-item-price">${formatPrice(item.price)}</div>
+        <span class="menu-item-action">Details</span>
       </button>
     `;
   }).join('');
