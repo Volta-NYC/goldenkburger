@@ -360,11 +360,11 @@ nav {
 .hero-right {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
   overflow: hidden;
   z-index: 2;
-  padding: 120px 84px 80px 28px;
+  padding: 120px 96px 96px 28px;
 }
 
 .hero-right-yellow-panel {
@@ -375,39 +375,17 @@ nav {
   display: none;
 }
 
-.hero-logo-display {
-  position: absolute;
-  right: 18%;
-  bottom: 9%;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  margin-left: 0;
-  padding: 8px;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid rgba(255,255,255,0.7);
-  border-radius: 999px;
-  box-shadow: 0 12px 34px rgba(10,17,64,0.22);
-}
-
-.hero-logo-img {
-  width: 56px;
-  height: 56px;
-  object-fit: contain;
-  background: white;
-  border-radius: 50%;
-  padding: 5px;
-  filter: none;
-}
-
 .hero-food-card {
+  --hero-food-x: 34px;
+  --hero-food-y: 30px;
   position: relative;
-  width: min(430px, 92%);
-  aspect-ratio: 4 / 4.6;
+  width: min(360px, 82%);
+  aspect-ratio: 4 / 4.4;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.26);
   box-shadow: 0 30px 90px rgba(10,17,64,0.42);
+  transform: translate(var(--hero-food-x), var(--hero-food-y));
 }
 
 .hero-food-card img {
@@ -468,11 +446,14 @@ nav {
 
 /* ── HERO ENTRANCE + SCROLL MOTION ── */
 .js-ready .hero-left > *,
-.js-ready .hero-logo-display,
 .js-ready .hero-food-card {
   opacity: 0;
   transform: translateY(26px) scale(0.98);
   filter: blur(6px);
+}
+
+.js-ready .hero-food-card {
+  transform: translate(var(--hero-food-x), calc(var(--hero-food-y) + 26px)) scale(0.98);
 }
 
 .js-ready .hero::before,
@@ -501,9 +482,8 @@ nav {
   animation: hero-fade-up 0.78s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.js-ready .hero.hero-animate .hero-logo-display,
 .js-ready .hero.hero-animate .hero-food-card {
-  animation: hero-logo-in 0.98s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-food-in 0.98s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .js-ready .hero.hero-animate .hero-eyebrow { animation-delay: 0.06s; }
@@ -513,7 +493,6 @@ nav {
 .js-ready .hero.hero-animate .hero-desc { animation-delay: 0.42s; }
 .js-ready .hero.hero-animate .hero-cta-row { animation-delay: 0.5s; }
 .js-ready .hero.hero-animate .hero-food-card { animation-delay: 0.24s; }
-.js-ready .hero.hero-animate .hero-logo-display { animation-delay: 0.38s; }
 
 @keyframes hero-fade-up {
   from {
@@ -546,20 +525,20 @@ nav {
   }
 }
 
-@keyframes hero-logo-in {
+@keyframes hero-food-in {
   from {
     opacity: 0;
-    transform: translateY(36px) scale(0.84) rotate(-3deg);
+    transform: translate(var(--hero-food-x), calc(var(--hero-food-y) + 36px)) scale(0.84) rotate(-3deg);
     filter: blur(8px);
   }
   62% {
     opacity: 1;
-    transform: translateY(-4px) scale(1.03) rotate(0.5deg);
+    transform: translate(var(--hero-food-x), calc(var(--hero-food-y) - 4px)) scale(1.03) rotate(0.5deg);
     filter: blur(0);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1) rotate(0deg);
+    transform: translate(var(--hero-food-x), var(--hero-food-y)) scale(1) rotate(0deg);
     filter: blur(0);
   }
 }
@@ -1745,7 +1724,6 @@ footer {
   .hero { grid-template-columns: 1fr; }
   .hero-left { padding: 120px 40px 64px; }
   .hero-right { height: 420px; }
-  .hero-logo-display { margin: 0 40px; }
   .stats-bar { padding: 32px 40px; }
   .menu-section { padding: 80px 40px; }
   .about-section { padding: 80px 40px; }
@@ -1824,7 +1802,9 @@ footer {
     background-size: cover;
   }
   .hero-food-card {
-    width: min(320px, 100%);
+    --hero-food-x: 22px;
+    --hero-food-y: 24px;
+    width: min(286px, 82%);
     aspect-ratio: 4 / 3.8;
   }
   .hero-food-copy {
@@ -1833,15 +1813,6 @@ footer {
     bottom: 18px;
   }
   .hero-food-copy strong { font-size: 17px; }
-  .hero-logo-display {
-    right: 28px;
-    bottom: 22px;
-    margin: 0;
-  }
-  .hero-logo-img {
-    width: 48px;
-    height: 48px;
-  }
   .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 32px 24px; gap: 16px; }
   .stat + .stat::before { display: none; }
   .menu-section { padding: 64px 24px; }
@@ -2117,15 +2088,6 @@ footer {
 
 /* ── DESIGN IMPROVEMENTS ── */
 
-/* Magnetic hover on hero logo */
-.hero-logo-img {
-  transition: transform 0.4s cubic-bezier(0.34, 1.26, 0.64, 1), box-shadow 0.4s;
-}
-.hero-logo-img:hover {
-  transform: scale(1.04) rotate(1deg);
-  box-shadow: 0 20px 70px rgba(245,216,0,0.25), 0 4px 20px rgba(10,17,64,0.4);
-}
-
 .stat-num {
   transition: color 0.3s;
 }
@@ -2227,9 +2189,6 @@ footer {
         <span>Made in Bayside</span>
         <strong>Real Golden K burgers, stacked high and served with fries.</strong>
       </div>
-    </div>
-    <div class="hero-logo-display">
-      <img src="brand assets/kburger.avif" alt="Golden K Burgers" class="hero-logo-img">
     </div>
   </div>
 </section>
