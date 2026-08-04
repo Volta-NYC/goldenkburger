@@ -8,7 +8,7 @@
 <link rel="shortcut icon" href="brand%20assets/kburger.avif">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,7 +32,7 @@
 html { scroll-behavior: smooth; }
 body {
   background: var(--navy-deeper);
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.7;
   overflow-x: hidden;
   min-height: 100vh;
@@ -65,15 +65,37 @@ nav {
 
 .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .nav-logo img { height: 40px; width: 40px; object-fit: contain; background: white; border-radius: 50%; padding: 4px; }
-.nav-wordmark { font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; color: white; }
+.nav-wordmark { font-family: 'Space Grotesk', sans-serif; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; color: white; }
 .nav-wordmark .k { color: var(--yellow); }
 
 .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-.nav-links a { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s ease; }
+.nav-links a {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+  padding-bottom: 6px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--yellow);
+  transition: width 0.2s ease;
+}
 .nav-links a:hover { color: rgba(255,255,255,0.9); }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
 .nav-links a.active { color: var(--yellow); }
 
-.nav-cta { background: var(--yellow); color: var(--navy-deeper); font-family: 'Archivo Black', sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 22px; border-radius: 5px; text-decoration: none; transition: background 0.2s ease; }
+.nav-cta { background: var(--yellow); color: var(--navy-deeper); font-family: 'Space Grotesk', sans-serif; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 22px; border-radius: 5px; text-decoration: none; transition: background 0.2s ease; }
 .nav-cta:hover { background: var(--yellow-warm); }
 
 /* ── PAGE ── */
@@ -147,7 +169,7 @@ nav {
 }
 
 .order-h1 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(44px, 5vw, 72px);
   line-height: 0.92;
   color: white;
@@ -185,11 +207,11 @@ nav {
 .order-btn-main {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
   background: var(--yellow);
   color: var(--navy-deeper);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -204,18 +226,8 @@ nav {
 .order-btn-main:active { transform: translateY(0); }
 
 .order-btn-arrow {
-  width: 36px; height: 36px;
-  background: var(--navy-deeper);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
+  display: none;
 }
-
-.order-btn-main:hover .order-btn-arrow { transform: translateX(3px); }
 
 .order-btn-secondary {
   display: inline-flex;
@@ -280,7 +292,7 @@ nav {
 .order-card-text { flex: 1; }
 
 .order-card-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 16px;
   color: white;
   letter-spacing: -0.01em;
@@ -343,23 +355,123 @@ nav {
 
 .info-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.15); }
 
-.order-footer {
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 18px 48px 30px;
-  text-align: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.24);
+/* ── FOOTER ── */
+footer {
   background: var(--navy-deeper);
+  padding: 56px 64px 48px;
+  position: relative;
+  overflow: hidden;
 }
 
-.order-footer a {
-  color: #84d61a;
+.footer-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 42px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-brand { display: flex; flex-direction: column; gap: 16px; max-width: 300px; }
+
+.footer-logo { display: flex; align-items: center; gap: 12px; }
+.footer-logo img { height: 44px; width: 44px; object-fit: contain; background: white; border-radius: 50%; padding: 4px; }
+
+.footer-wordmark {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: white;
+}
+
+.footer-wordmark .k { color: var(--yellow); }
+
+.footer-brand-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.footer-col-title {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 20px;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.footer-col ul a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.38);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-col ul a:hover { color: rgba(255,255,255,0.75); }
+
+.footer-col p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.75;
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+}
+
+.footer-novus-link {
+  color: #F6B78D;
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s ease;
 }
 
-.order-footer a:hover { opacity: 0.82; }
+.footer-novus-link:hover { opacity: 0.82; }
+
+.footer-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(245,216,0,0.4);
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
@@ -367,7 +479,9 @@ nav {
   .order-page { padding: 120px 40px 64px; }
   .order-inner { grid-template-columns: 1fr; gap: 48px; }
   .order-info-strip { padding: 24px 40px; gap: 24px; }
-  .order-footer { padding: 18px 40px 26px; }
+  footer { padding: 48px 40px; }
+  .footer-top { flex-direction: column; }
+  .footer-cols { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -427,7 +541,9 @@ nav {
   }
   .order-info-strip { padding: 20px 24px; flex-direction: column; gap: 12px; }
   .info-dot { display: none; }
-  .order-footer { padding: 16px 24px 24px; }
+  footer { padding: 40px 24px; }
+  .footer-cols { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 </style>
 </head>
@@ -443,6 +559,7 @@ nav {
     <li><a href="index.html#menu">Menu</a></li>
     <li><a href="index.html#about">Our Story</a></li>
     <li><a href="index.html#location">Visit</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
     <li><a href="reservations.html">Reservations</a></li>
   </ul>
   <a href="https://www.ubereats.com/store/golden-k-burgers/9d4eWG7eTxyKcA6th8Gnpg" target="_blank" rel="noopener noreferrer" class="nav-cta active">Order Online</a>
@@ -510,21 +627,6 @@ nav {
         <span class="order-card-arrow">→</span>
       </a>
 
-      <a href="reservations.html" class="order-card">
-        <div class="order-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 2v7c0 1.7 1.3 3 3 3s3-1.3 3-3V2"/>
-            <path d="M6 2v20"/>
-            <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"/>
-            <path d="M21 15v7"/>
-          </svg>
-        </div>
-        <div class="order-card-text">
-          <div class="order-card-title">Dine In</div>
-          <div class="order-card-sub">Reserve your table · Walk-ins also welcome</div>
-        </div>
-        <span class="order-card-arrow">→</span>
-      </a>
     </div>
 
   </div>
@@ -541,7 +643,55 @@ nav {
   <div class="info-item"><strong>(718) 819-8186</strong></div>
 </div>
 
-<footer class="order-footer">© 2026 Golden K Burgers · made by <a href="https://novusnyc.org/" target="_blank">novus</a></footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bg"></div>
+
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="brand assets/kburger.avif" alt="Golden K Burgers">
+        <span class="footer-wordmark">GOLDEN <span class="k">K</span> BURGERS</span>
+      </div>
+      <p class="footer-brand-desc">Korean-American. Family-owned. Queens-proud. Serving bold, fresh burgers at 40-17 Bell Blvd, Bayside.</p>
+    </div>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Explore</div>
+        <ul>
+          <li><a href="index.html#menu">Menu</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="index.html#location">Visit</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Visit</div>
+        <p>40-17 Bell Blvd<br>Flushing, NY 11361<br><br>Mon: 11am-10:30pm<br>Tue: 11am-2am<br>Wed: 11am-10:30pm<br>Thu: 11am-11pm<br>Fri &amp; Sat: 11am-2am<br>Sun: 11am-10:30pm</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Connect</div>
+        <ul>
+          <li><a href="https://www.instagram.com/goldenkburgers/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61561145482303" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+          <li><a href="reservations.html">Make a Reservation</a></li>
+          <li><a href="order.html">Order Online</a></li>
+          <li><a href="mailto:goldenkburgers@gmail.com">goldenkburgers@gmail.com</a></li>
+          <li><a href="tel:+17188198186">(718) 819-8186</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="footer-divider">
+
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Golden K Burgers. All rights reserved. · made by <a href="https://novusnyc.org/" target="_blank" rel="noopener noreferrer" class="footer-novus-link">novus</a></span>
+    <span class="footer-tagline">Queens-proud since day one.</span>
+  </div>
+</footer>
 
 </body>
 </html>

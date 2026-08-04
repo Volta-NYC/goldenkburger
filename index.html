@@ -1224,7 +1224,7 @@ nav {
 /* ── ABOUT SECTION ── */
 .about-section {
   padding: 132px 48px 88px;
-  background: var(--navy-deeper);
+  background: #fff6df;
   position: relative;
   overflow: hidden;
 }
@@ -1234,7 +1234,7 @@ nav {
   width: 700px;
   height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(26,43,150,0.6) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245,216,0,0.28) 0%, transparent 70%);
   top: -200px;
   right: -100px;
   pointer-events: none;
@@ -1245,16 +1245,16 @@ nav {
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245,216,0,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(26,43,150,0.08) 0%, transparent 70%);
   bottom: -100px;
   left: -50px;
   pointer-events: none;
 }
 
-.about-section .section-eyebrow { color: rgba(255,255,255,0.35); }
+.about-section .section-eyebrow { color: rgba(10,17,64,0.48); }
 .about-section .section-eyebrow::before { background: var(--yellow-deep); }
 .about-section .section-title {
-  color: white;
+  color: var(--navy-deeper);
   margin-bottom: 22px;
 }
 
@@ -1279,8 +1279,8 @@ nav {
 
 .about-story {
   display: grid;
-  grid-template-columns: minmax(420px, 0.78fr) minmax(0, 1fr);
-  gap: clamp(58px, 8vw, 124px);
+  grid-template-columns: minmax(360px, 0.9fr) minmax(0, 1fr);
+  gap: clamp(64px, 7vw, 112px);
   align-items: center;
 }
 
@@ -1289,7 +1289,7 @@ nav {
   font-size: clamp(25px, 2.1vw, 36px);
   font-weight: 700;
   line-height: 1.32;
-  color: white;
+  color: var(--navy-deeper);
   max-width: 1060px;
   margin-bottom: 0;
   letter-spacing: 0;
@@ -1298,7 +1298,8 @@ nav {
 .about-feature-photo {
   position: relative;
   margin: 0;
-  min-height: min(56vh, 560px);
+  min-height: 0;
+  height: clamp(360px, 38vw, 520px);
   aspect-ratio: 6 / 5;
   overflow: hidden;
   border-radius: 8px;
@@ -1324,7 +1325,7 @@ nav {
 }
 
 .about-lead .highlight {
-  color: var(--yellow);
+  color: var(--navy);
 }
 
 .about-paragraphs,
@@ -1345,7 +1346,7 @@ nav {
 
 .about-body {
   font-size: clamp(17px, 1.08vw, 19px);
-  color: rgba(255,255,255,0.74);
+  color: rgba(10,17,64,0.72);
   line-height: 1.88;
   margin-bottom: 0;
   font-weight: 400;
@@ -1354,22 +1355,22 @@ nav {
 .about-history {
   margin-bottom: 36px;
   padding-top: 26px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(10,17,64,0.1);
 }
 
 .about-history-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px;
+  font-size: clamp(30px, 3vw, 48px);
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--yellow);
-  margin-bottom: 22px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--navy-deeper);
+  margin-bottom: 28px;
 }
 
 .about-history-body {
   font-size: 16px;
-  color: rgba(255,255,255,0.74);
+  color: rgba(10,17,64,0.72);
   line-height: 1.9;
   font-weight: 400;
 }
@@ -1391,7 +1392,7 @@ nav {
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--yellow);
+  color: var(--navy);
   text-decoration: none;
   transition: gap 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -1403,19 +1404,19 @@ nav {
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  color: rgba(255,255,255,0.8);
+  color: rgba(10,17,64,0.72);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,255,255,0.34);
+  border-bottom: 1px solid rgba(10,17,64,0.28);
   padding-bottom: 4px;
   transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .about-ig:hover {
-  color: var(--yellow);
-  border-color: var(--yellow);
+  color: var(--navy);
+  border-color: var(--navy);
 }
 
 .about-side {
@@ -1428,15 +1429,13 @@ nav {
 .about-side .about-history {
   margin-bottom: 0;
   padding: 54px 0 0;
-  border-top: 1px solid rgba(255,255,255,0.12);
+  border-top: 1px solid rgba(10,17,64,0.12);
   background: transparent;
   border-left: none;
   border-right: none;
   border-bottom: none;
   border-radius: 0;
-  display: grid;
-  grid-template-columns: minmax(220px, 0.24fr) minmax(0, 1fr);
-  gap: clamp(44px, 6vw, 92px);
+  display: block;
 }
 
 .pillars {
@@ -1456,16 +1455,16 @@ nav {
 .pillar {
   min-height: 138px;
   padding: 26px 22px;
-  border: 1px solid rgba(245,216,0,0.22);
+  border: 1px solid rgba(196,173,0,0.35);
   border-radius: 8px;
-  background: rgba(255,255,255,0.055);
+  background: rgba(255,255,255,0.64);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 12px;
   align-items: center;
   text-align: center;
-  box-shadow: 0 18px 44px rgba(4,8,38,0.18);
+  box-shadow: 0 18px 44px rgba(10,17,64,0.1);
 }
 
 .pillar-num {
@@ -1474,14 +1473,14 @@ nav {
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0;
-  color: var(--yellow);
+  color: var(--navy);
 }
 
 .pillar-name {
   font-size: clamp(15px, 1vw, 18px);
   font-weight: 800;
   line-height: 1.24;
-  color: white;
+  color: var(--navy-deeper);
   margin-bottom: 0;
   letter-spacing: 0;
   text-transform: none;
@@ -1489,11 +1488,6 @@ nav {
 
 .pillar-desc {
   display: none;
-}
-
-.story-break {
-  height: 18px;
-  background: linear-gradient(90deg, var(--yellow) 0%, var(--yellow) 38%, var(--navy) 38%, var(--navy) 68%, var(--yellow-warm) 68%, var(--yellow-warm) 100%);
 }
 
 /* ── EXPERIENCE STRIP ── */
@@ -1566,6 +1560,7 @@ nav {
   aspect-ratio: 4/3;
   background: linear-gradient(135deg, var(--navy-pale) 0%, var(--navy-light) 100%);
   position: relative;
+  border: 3px solid var(--yellow);
   box-shadow: 0 4px 24px rgba(10,17,64,0.1), 0 1px 4px rgba(10,17,64,0.06);
   min-height: 320px;
 }
@@ -1673,6 +1668,62 @@ nav {
 }
 
 .loc-phone:hover { color: var(--navy); }
+
+/* ── CONTACT SECTION ── */
+.contact-section {
+  padding: 72px 64px;
+  background: #fff6df;
+}
+
+.contact-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.8fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.contact-lead {
+  max-width: 680px;
+  color: rgba(10,17,64,0.68);
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.contact-card {
+  background: white;
+  border: 1px solid rgba(10,17,64,0.1);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 18px 45px rgba(10,17,64,0.08);
+  display: grid;
+  gap: 18px;
+}
+
+.contact-row {
+  display: grid;
+  gap: 4px;
+}
+
+.contact-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.contact-value {
+  color: var(--navy-deeper);
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.contact-value:hover {
+  color: var(--navy);
+}
 
 /* ── FOOTER ── */
 footer {
@@ -1782,7 +1833,7 @@ footer {
 }
 
 .footer-novus-link {
-  color: #84d61a;
+  color: #F6B78D;
   text-decoration: none;
   font-weight: 600;
   transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1850,6 +1901,8 @@ footer {
   .experience-strip { padding: 48px 40px; flex-direction: column; align-items: flex-start; }
   .location-section { padding: 80px 40px; }
   .location-grid { grid-template-columns: 1fr; }
+  .contact-section { padding: 64px 40px; }
+  .contact-inner { grid-template-columns: 1fr; }
   footer { padding: 48px 40px; }
   .footer-top { flex-direction: column; }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
@@ -2003,6 +2056,8 @@ footer {
   .experience-strip { padding: 40px 24px; }
   .location-section { padding: 64px 24px; }
   .location-map { min-height: 0; }
+  .contact-section { padding: 56px 24px; }
+  .contact-card { padding: 24px; }
   footer { padding: 40px 24px; }
   .footer-cols { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -2288,6 +2343,7 @@ footer {
     <li><a href="#menu">Menu</a></li>
     <li><a href="#about">Our Story</a></li>
     <li><a href="#location">Visit</a></li>
+    <li><a href="#contact">Contact</a></li>
     <li><a href="reservations.html">Reservations</a></li>
   </ul>
   <a href="order.html" class="nav-cta">Order Online</a>
@@ -2506,8 +2562,6 @@ footer {
   </div>
 </section>
 
-<section class="story-break" aria-hidden="true"></section>
-
 <!-- TESTIMONIALS SECTION -->
 <section class="testimonials-section">
   <div class="testimonials-inner">
@@ -2561,7 +2615,7 @@ footer {
     <div class="location-map">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.4!2d-73.7688!3d40.7645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2603a0b09c5c7%3A0x0!2s40-17+Bell+Blvd%2C+Flushing%2C+NY+11361!5e0!3m2!1sen!2sus!4v1"
-        width="100%" height="100%" style="border:0;border-radius:14px;" allowfullscreen="" loading="lazy"
+        width="100%" height="100%" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy"
         title="Golden K Burgers location">
       </iframe>
     </div>
@@ -2600,6 +2654,35 @@ footer {
   </div>
 </section>
 
+<!-- CONTACT SECTION -->
+<section class="contact-section scroll-reveal" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow">7 — Contact</div>
+      <h2 class="section-title">Questions,<br>Plans, Parties</h2>
+      <p class="contact-lead">Call, email, or message Golden K Burgers for orders, reservations, catering questions, and local partnerships.</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <a href="tel:+17188198186" class="contact-value">(718) 819-8186</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <a href="mailto:goldenkburgers@gmail.com" class="contact-value">goldenkburgers@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Social</span>
+        <a href="https://www.instagram.com/goldenkburgers/" target="_blank" rel="noopener noreferrer" class="contact-value">@goldenkburgers</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Address</span>
+        <a href="#location" class="contact-value">40-17 Bell Blvd, Flushing, NY 11361</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-bg"></div>
@@ -2615,14 +2698,13 @@ footer {
 
     <div class="footer-cols">
       <div class="footer-col">
-        <div class="footer-col-title">Menu</div>
+        <div class="footer-col-title">Explore</div>
         <ul>
-          <li><a href="#">Beef Burgers</a></li>
-          <li><a href="#">Chicken Burgers</a></li>
-          <li><a href="#">Seafood Burgers</a></li>
-          <li><a href="#">Veggie Burgers</a></li>
-          <li><a href="#">Korean Fusion</a></li>
-          <li><a href="#">Sides &amp; Drinks</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#location">Visit</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2636,6 +2718,7 @@ footer {
           <li><a href="https://www.facebook.com/profile.php?id=61561145482303" target="_blank">Facebook</a></li>
           <li><a href="reservations.html">Make a Reservation</a></li>
           <li><a href="order.html">Order Online</a></li>
+          <li><a href="#contact">Contact</a></li>
           <li><a href="mailto:goldenkburgers@gmail.com">goldenkburgers@gmail.com</a></li>
           <li><a href="tel:+17188198186">(718) 819-8186</a></li>
         </ul>
