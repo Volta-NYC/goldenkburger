@@ -1164,16 +1164,27 @@ nav {
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 54px;
+  gap: 64px;
   align-items: start;
   position: relative;
   z-index: 2;
-  max-width: 1600px;
+  max-width: 1680px;
   margin: 0 auto;
 }
 
+.about-heading {
+  max-width: 1180px;
+}
+
 .about-copy {
-  max-width: none;
+  max-width: 780px;
+}
+
+.about-story {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.78fr) minmax(0, 1fr);
+  gap: clamp(58px, 8vw, 124px);
+  align-items: center;
 }
 
 .about-lead {
@@ -1181,33 +1192,23 @@ nav {
   font-size: clamp(27px, 2.35vw, 40px);
   line-height: 1.32;
   color: white;
-  max-width: 1180px;
-  margin-bottom: 42px;
+  max-width: 1060px;
+  margin-bottom: 0;
   letter-spacing: 0;
 }
 
-.about-media-row {
-  display: grid;
-  grid-template-columns: 1.35fr 0.85fr 0.85fr;
-  gap: 16px;
-  margin: 0 0 42px;
-}
-
-.about-photo {
+.about-feature-photo {
   position: relative;
-  min-height: 260px;
-  aspect-ratio: 4 / 3;
+  margin: 0;
+  min-height: min(56vh, 560px);
+  aspect-ratio: 6 / 5;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.1);
   background: rgba(255,255,255,0.04);
 }
 
-.about-photo:first-child {
-  aspect-ratio: 16 / 9;
-}
-
-.about-photo::after {
+.about-feature-photo::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -1216,11 +1217,12 @@ nav {
   pointer-events: none;
 }
 
-.about-photo img {
+.about-feature-photo img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center 48%;
 }
 
 .about-lead .highlight {
@@ -1230,16 +1232,17 @@ nav {
 .about-paragraphs,
 .about-history-copy {
   display: grid;
-  gap: 32px;
+  gap: 28px;
 }
 
 .about-paragraphs {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
+  grid-template-columns: 1fr;
+  max-width: 760px;
 }
 
 .about-history-copy {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(34px, 4vw, 64px);
 }
 
 .about-body {
@@ -1317,19 +1320,23 @@ nav {
 
 .about-side {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.8fr);
-  gap: 22px;
-  align-items: stretch;
+  grid-template-columns: 1fr;
+  gap: 26px;
   padding-top: 0;
 }
 
 .about-side .about-history {
   margin-bottom: 0;
-  padding: 38px 42px;
-  border-top: none;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.11);
-  border-radius: 8px;
+  padding: 54px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.24fr) minmax(0, 1fr);
+  gap: clamp(44px, 6vw, 92px);
 }
 
 .pillars {
@@ -1339,10 +1346,10 @@ nav {
   align-content: flex-start;
   gap: 12px;
   height: auto;
-  padding: 28px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 8px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 
 .pillar {
@@ -1705,14 +1712,20 @@ footer {
   .stats-bar { padding: 32px 40px; }
   .menu-section { padding: 80px 40px; }
   .about-section { padding: 92px 40px; }
-  .about-grid { grid-template-columns: 1fr; gap: 52px; }
+  .about-grid { gap: 56px; }
+  .about-heading { max-width: 960px; }
+  .about-story { grid-template-columns: 1fr; gap: 42px; }
   .about-copy { max-width: 100%; }
-  .about-media-row { grid-template-columns: 1fr 1fr; }
-  .about-photo:first-child { grid-column: 1 / -1; }
-  .about-paragraphs,
+  .about-feature-photo {
+    min-height: 360px;
+    aspect-ratio: 16 / 9;
+  }
   .about-history-copy { grid-template-columns: 1fr 1fr; }
-  .about-side { grid-template-columns: 1fr; }
-  .about-side .about-history { padding: 30px 32px; }
+  .about-side .about-history {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 42px 0 0;
+  }
   .about-lead { font-size: 23px; }
   .about-paragraphs { gap: 24px; }
   .about-body { font-size: 16px; line-height: 1.86; }
@@ -1836,22 +1849,22 @@ footer {
   .menu-detail-card { padding: 28px 22px; }
   .menu-detail-description { font-size: 15px; }
   .about-section { padding: 76px 24px; }
-  .about-grid { gap: 42px; }
-  .about-media-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 34px;
-  }
-  .about-photo,
-  .about-photo:first-child {
-    min-height: 210px;
+  .about-grid { gap: 46px; }
+  .about-story { gap: 34px; }
+  .about-feature-photo {
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
     aspect-ratio: 4 / 3;
   }
-  .about-paragraphs,
   .about-history-copy { grid-template-columns: 1fr; }
   .about-side { gap: 16px; }
-  .about-side .about-history { padding: 24px 20px; border-radius: 10px; }
-  .pillars { padding: 18px; gap: 8px; }
+  .about-side .about-history {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 32px 0 0;
+  }
+  .pillars { gap: 8px; }
   .pillar { padding: 8px 10px; gap: 7px; }
   .pillar-name { font-size: 11px; }
   .about-lead { font-size: 21px; }
@@ -2295,23 +2308,26 @@ footer {
   <div class="about-bg-radial-2"></div>
 
   <div class="about-grid scroll-reveal">
-    <div class="about-copy">
+    <div class="about-heading">
       <div class="section-eyebrow">4 — Our Story</div>
       <h2 class="section-title">Who We Are</h2>
       <p class="about-lead">The <span class="highlight">crowned king</span> of Queens burgers — built from two worlds, one kitchen.</p>
-      <div class="about-media-row" aria-label="Golden K Burgers food photos">
-        <figure class="about-photo"><img src="brand assets/menu/DSCF9212.jpg" alt="Golden K burger table spread with fries" loading="lazy"></figure>
-        <figure class="about-photo"><img src="brand assets/menu/DSCF9231.jpg" alt="Golden K burger and fries close-up" loading="lazy"></figure>
-        <figure class="about-photo"><img src="brand assets/menu/DSCF9115.jpg" alt="Golden K crispy chicken burger" loading="lazy"></figure>
-      </div>
-      <div class="about-paragraphs">
-        <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant in Bayside, Queens. We serve a broad lineup of beef, veggie, seafood, and chicken burgers, each plate built for real appetite and consistency from first bite to last.</p>
-        <p class="about-body">Every burger is served with crispy fries, pepperoncini, and pickles, and guests can upgrade fries with favorites like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more. Our kitchen is known for bold flavor, generous portions, and double-patty beef builds that feel stacked, satisfying, and unmistakably Golden K.</p>
-        <p class="about-body">Alongside burgers, the menu includes brunch, weekday lunch deals, late-night options, desserts and milkshakes, appetizers, wings, beer, happy hour specials, and more. As a family-run small business, the goal is simple: make food worth coming back for and become a lasting local favorite in Queens.</p>
-      </div>
-      <div class="about-actions">
-        <a href="#location" class="about-cta">Find Us in Bayside <span class="arrow">→</span></a>
-        <a href="https://www.instagram.com/goldenkburgers/" target="_blank" rel="noopener noreferrer" class="about-ig">Instagram @goldenkburgers <span class="arrow">→</span></a>
+    </div>
+
+    <div class="about-story">
+      <figure class="about-feature-photo">
+        <img src="brand assets/menu/DSCF9231.jpg" alt="Golden K burger and fries close-up" loading="lazy">
+      </figure>
+      <div class="about-copy">
+        <div class="about-paragraphs">
+          <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant in Bayside, Queens. We serve a broad lineup of beef, veggie, seafood, and chicken burgers, each plate built for real appetite and consistency from first bite to last.</p>
+          <p class="about-body">Every burger is served with crispy fries, pepperoncini, and pickles, and guests can upgrade fries with favorites like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more. Our kitchen is known for bold flavor, generous portions, and double-patty beef builds that feel stacked, satisfying, and unmistakably Golden K.</p>
+          <p class="about-body">Alongside burgers, the menu includes brunch, weekday lunch deals, late-night options, desserts and milkshakes, appetizers, wings, beer, happy hour specials, and more. As a family-run small business, the goal is simple: make food worth coming back for and become a lasting local favorite in Queens.</p>
+        </div>
+        <div class="about-actions">
+          <a href="#location" class="about-cta">Find Us in Bayside <span class="arrow">→</span></a>
+          <a href="https://www.instagram.com/goldenkburgers/" target="_blank" rel="noopener noreferrer" class="about-ig">Instagram @goldenkburgers <span class="arrow">→</span></a>
+        </div>
       </div>
     </div>
 
