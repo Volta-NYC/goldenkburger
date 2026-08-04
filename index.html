@@ -1001,13 +1001,14 @@ nav {
 
 /* ── GALLERY MARQUEE ── */
 .gallery-marquee {
-  --gallery-gap-offset: 0px;
-  --gallery-card-width: 100vw;
+  --gallery-gap: clamp(10px, 1vw, 16px);
+  --gallery-card-width: calc(100vw - clamp(24px, 3vw, 48px));
   width: 100vw;
   margin-left: calc(50% - 50vw);
   overflow: hidden;
   display: block;
   cursor: default;
+  position: relative;
 }
 
 .gallery-marquee-row {
@@ -1019,15 +1020,51 @@ nav {
 .gallery-marquee-track {
   display: flex;
   width: max-content;
-  gap: 0;
+  gap: var(--gallery-gap);
   will-change: transform;
-  transform: translateX(0);
-  animation: gallery-marquee 64s linear infinite;
+  transform: translateX(var(--gallery-shift, 0px));
 }
 
-.gallery-marquee:hover .gallery-marquee-track,
-.gallery-marquee:focus-within .gallery-marquee-track {
-  animation-play-state: paused;
+.gallery-controls {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(22px, 4vw, 48px);
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+}
+
+.gallery-control {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.56);
+  background: rgba(10,17,64,0.72);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 34px rgba(4,8,38,0.28);
+  transition: transform 0.18s cubic-bezier(0.25,0.46,0.45,0.94), background 0.18s cubic-bezier(0.25,0.46,0.45,0.94), border-color 0.18s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.gallery-control:hover,
+.gallery-control:focus-visible {
+  transform: translateY(-2px);
+  background: var(--yellow);
+  color: var(--navy-deeper);
+  border-color: var(--yellow);
+  outline: none;
+}
+
+.gallery-control:active {
+  transform: translateY(0);
 }
 
 .gallery-card {
@@ -1098,13 +1135,8 @@ nav {
   filter: saturate(1.08) contrast(1.02);
 }
 
-@keyframes gallery-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-50% - var(--gallery-gap-offset))); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .gallery-marquee-track { animation: none; }
+  .gallery-marquee-track { transform: translateX(var(--gallery-shift, 0px)); }
 }
 
 @media (max-width: 1024px) {
@@ -1123,6 +1155,13 @@ nav {
   .gallery-header { margin-bottom: 28px; }
   .gallery-card {
     height: min(68vh, 460px);
+  }
+  .gallery-controls {
+    bottom: 22px;
+  }
+  .gallery-control {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -2341,6 +2380,10 @@ footer {
         <figure class="gallery-card" data-id="13" aria-hidden="true"><img src="brand assets/menu/DSCF9097.jpg" alt="" loading="lazy"></figure>
       </div>
     </div>
+    <div class="gallery-controls" aria-label="Gallery controls">
+      <button class="gallery-control" type="button" data-gallery-dir="prev" aria-label="Previous gallery image">←</button>
+      <button class="gallery-control" type="button" data-gallery-dir="next" aria-label="Next gallery image">→</button>
+    </div>
   </div>
 </section>
 
@@ -2692,6 +2735,82 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
 
 document.querySelectorAll('.fade-up, .scroll-reveal').forEach(el => observer.observe(el));
+
+// ── GALLERY MARQUEE CONTROLS ──
+(function () {
+  const marquee = document.querySelector('.gallery-marquee');
+  const track = document.querySelector('.gallery-marquee-track');
+  const controls = document.querySelectorAll('[data-gallery-dir]');
+  if (!marquee || !track) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let current = 0;
+  let target = 0;
+  let loopDistance = 0;
+  let stepDistance = 0;
+  let lastTime = performance.now();
+  let rafId = null;
+  let userUntil = 0;
+
+  const readMetrics = () => {
+    const cards = [...track.querySelectorAll('.gallery-card')];
+    if (!cards.length) return;
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+    const firstSet = cards.slice(0, Math.max(1, cards.length / 2));
+    loopDistance = firstSet.reduce((sum, card) => sum + card.getBoundingClientRect().width, 0) + gap * firstSet.length;
+    stepDistance = firstSet[0].getBoundingClientRect().width + gap;
+  };
+
+  const normalize = () => {
+    if (!loopDistance) return;
+    while (current <= -loopDistance) {
+      current += loopDistance;
+      target += loopDistance;
+    }
+    while (current > 0) {
+      current -= loopDistance;
+      target -= loopDistance;
+    }
+  };
+
+  const render = () => {
+    normalize();
+    track.style.setProperty('--gallery-shift', `${current.toFixed(2)}px`);
+  };
+
+  const tick = now => {
+    const delta = Math.min(now - lastTime, 48);
+    lastTime = now;
+    const paused = marquee.matches(':hover') || marquee.contains(document.activeElement);
+    const allowAuto = !prefersReducedMotion.matches && !paused && now > userUntil;
+
+    if (allowAuto) target -= delta * 0.028;
+    current += (target - current) * 0.12;
+    render();
+    rafId = requestAnimationFrame(tick);
+  };
+
+  controls.forEach(button => {
+    button.addEventListener('click', () => {
+      if (!stepDistance) readMetrics();
+      const direction = button.dataset.galleryDir === 'prev' ? 1 : -1;
+      target += direction * stepDistance;
+      userUntil = performance.now() + 1400;
+    });
+  });
+
+  readMetrics();
+  window.addEventListener('resize', () => {
+    readMetrics();
+    render();
+  });
+  rafId = requestAnimationFrame(tick);
+
+  window.addEventListener('beforeunload', () => {
+    if (rafId) cancelAnimationFrame(rafId);
+  });
+})();
 
 // Smooth in-page anchor links (native scroll)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
