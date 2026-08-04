@@ -1126,7 +1126,7 @@ nav {
 
 /* ── ABOUT SECTION ── */
 .about-section {
-  padding: 132px 72px;
+  padding: 132px 48px;
   background: var(--navy-deeper);
   position: relative;
   overflow: hidden;
@@ -1163,17 +1163,17 @@ nav {
 
 .about-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.68fr);
-  gap: clamp(64px, 8vw, 128px);
+  grid-template-columns: 1fr;
+  gap: 54px;
   align-items: start;
   position: relative;
   z-index: 2;
-  max-width: 1480px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 .about-copy {
-  max-width: 820px;
+  max-width: none;
 }
 
 .about-lead {
@@ -1181,8 +1181,46 @@ nav {
   font-size: clamp(27px, 2.35vw, 40px);
   line-height: 1.32;
   color: white;
-  margin-bottom: 44px;
+  max-width: 1180px;
+  margin-bottom: 42px;
   letter-spacing: 0;
+}
+
+.about-media-row {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr 0.85fr;
+  gap: 16px;
+  margin: 0 0 42px;
+}
+
+.about-photo {
+  position: relative;
+  min-height: 260px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+}
+
+.about-photo:first-child {
+  aspect-ratio: 16 / 9;
+}
+
+.about-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-top: 3px solid var(--yellow);
+  border-bottom: 3px solid rgba(42,62,191,0.86);
+  pointer-events: none;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .about-lead .highlight {
@@ -1191,9 +1229,17 @@ nav {
 
 .about-paragraphs,
 .about-history-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  display: grid;
+  gap: 32px;
+}
+
+.about-paragraphs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+
+.about-history-copy {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .about-body {
@@ -1231,7 +1277,7 @@ nav {
   flex-wrap: wrap;
   gap: 18px 24px;
   align-items: center;
-  margin-top: 34px;
+  margin-top: 42px;
 }
 
 .about-cta {
@@ -1270,15 +1316,16 @@ nav {
 }
 
 .about-side {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding-top: 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.8fr);
+  gap: 22px;
+  align-items: stretch;
+  padding-top: 0;
 }
 
 .about-side .about-history {
   margin-bottom: 0;
-  padding: 44px;
+  padding: 38px 42px;
   border-top: none;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.11);
@@ -1289,12 +1336,13 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 10px;
+  align-content: flex-start;
+  gap: 12px;
   height: auto;
-  padding: 0;
-  background: transparent;
-  border: none;
-  border-radius: 0;
+  padding: 28px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 8px;
 }
 
 .pillar {
@@ -1302,7 +1350,7 @@ nav {
   padding: 8px 10px;
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: 999px;
-  background: rgba(255,255,255,0.025);
+  background: rgba(10,17,64,0.22);
   display: inline-flex;
   gap: 7px;
   align-items: center;
@@ -1659,10 +1707,14 @@ footer {
   .about-section { padding: 92px 40px; }
   .about-grid { grid-template-columns: 1fr; gap: 52px; }
   .about-copy { max-width: 100%; }
+  .about-media-row { grid-template-columns: 1fr 1fr; }
+  .about-photo:first-child { grid-column: 1 / -1; }
+  .about-paragraphs,
+  .about-history-copy { grid-template-columns: 1fr 1fr; }
+  .about-side { grid-template-columns: 1fr; }
   .about-side .about-history { padding: 30px 32px; }
-  .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-lead { font-size: 23px; }
-  .about-paragraphs { gap: 20px; }
+  .about-paragraphs { gap: 24px; }
   .about-body { font-size: 16px; line-height: 1.86; }
   .about-history-body { font-size: 15px; line-height: 1.82; }
   .experience-strip { padding: 48px 40px; flex-direction: column; align-items: flex-start; }
@@ -1785,10 +1837,22 @@ footer {
   .menu-detail-description { font-size: 15px; }
   .about-section { padding: 76px 24px; }
   .about-grid { gap: 42px; }
+  .about-media-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 34px;
+  }
+  .about-photo,
+  .about-photo:first-child {
+    min-height: 210px;
+    aspect-ratio: 4 / 3;
+  }
+  .about-paragraphs,
+  .about-history-copy { grid-template-columns: 1fr; }
   .about-side { gap: 16px; }
   .about-side .about-history { padding: 24px 20px; border-radius: 10px; }
-  .pillars { grid-template-columns: 1fr; gap: 8px; }
-  .pillar { padding: 10px 12px; grid-template-columns: 20px 1fr; gap: 8px; }
+  .pillars { padding: 18px; gap: 8px; }
+  .pillar { padding: 8px 10px; gap: 7px; }
   .pillar-name { font-size: 11px; }
   .about-lead { font-size: 21px; }
   .about-paragraphs,
@@ -2235,6 +2299,11 @@ footer {
       <div class="section-eyebrow">4 — Our Story</div>
       <h2 class="section-title">Who We Are</h2>
       <p class="about-lead">The <span class="highlight">crowned king</span> of Queens burgers — built from two worlds, one kitchen.</p>
+      <div class="about-media-row" aria-label="Golden K Burgers food photos">
+        <figure class="about-photo"><img src="brand assets/menu/DSCF9212.jpg" alt="Golden K burger table spread with fries" loading="lazy"></figure>
+        <figure class="about-photo"><img src="brand assets/menu/DSCF9231.jpg" alt="Golden K burger and fries close-up" loading="lazy"></figure>
+        <figure class="about-photo"><img src="brand assets/menu/DSCF9115.jpg" alt="Golden K crispy chicken burger" loading="lazy"></figure>
+      </div>
       <div class="about-paragraphs">
         <p class="about-body">Golden K Burgers is a cozy, Korean-American family-owned restaurant in Bayside, Queens. We serve a broad lineup of beef, veggie, seafood, and chicken burgers, each plate built for real appetite and consistency from first bite to last.</p>
         <p class="about-body">Every burger is served with crispy fries, pepperoncini, and pickles, and guests can upgrade fries with favorites like Truffle Fries, Garlic Parmesan Fries, Sweet Potato Fries, and more. Our kitchen is known for bold flavor, generous portions, and double-patty beef builds that feel stacked, satisfying, and unmistakably Golden K.</p>
